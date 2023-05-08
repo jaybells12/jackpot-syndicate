@@ -7,7 +7,7 @@ export const Logo = (props: IconProps) => {
       id="Layer_1"
       x="0px"
       y="0px"
-      viewBox="0 0 1920 1080"
+      viewBox="195 238 1530 580"
       sx={{
         ".st0": { opacity: 0.3 },
         ".st1": { fill: "#FFFFFF" },
