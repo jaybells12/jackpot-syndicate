@@ -32,6 +32,28 @@ const features = [
   },
 ]
 
+const navLinks = [
+  {
+    text: "Jackpot Studios"
+  },
+  {
+    text: "Work"
+  },
+  {
+    text: "Equipment"
+  },
+  {
+    text: "About"
+  },
+]
+
+const hero = {
+  title: "We Build. You Grow. We Cultivate.",
+  text: "We help Creators and Brands grow their communities to maximize earnings across social platforms.",
+}
+
 export {
   features,
+  navLinks,
+  hero
 }

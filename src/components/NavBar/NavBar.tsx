@@ -1,30 +1,46 @@
-import { Flex, Container, useDisclosure } from "@chakra-ui/react";
-import { Burger } from "@icons/Burger";
+import {
+  Flex,
+  Container,
+  useDisclosure,
+  Button,
+  UnorderedList,
+  ListItem,
+} from "@chakra-ui/react";
+import { Link } from "@chakra-ui/next-js";
+import { navLinks } from "src/data/staticData";
 import { Logo } from "@components/Logo";
-
-import { NavMenu } from "@components/NavMenu";
 
 export const NavBar = (props: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Container as={"nav"} maxWidth={"unset"} centerContent>
-      <Flex
-        paddingInline={"1.875rem"}
-        paddingTop={"1.6875rem"}
-        justify={"space-between"}
-        align={"center"}
-        minWidth={"100%"}
-      >
-        <Logo width={"200px"} height={"auto"} />
-        <Burger
-          fill={"brand.trim"}
-          width={"3.125rem"}
-          height={"auto"}
-          padding={"0.625px"}
-          onClick={onOpen}
-        />
-        <NavMenu isOpen={isOpen} onClose={onClose} />
+    <Container
+      as={"nav"}
+      maxWidth={"unset"}
+      height={"95px"}
+      backgroundColor={"transparent"}
+      position={"fixed"}
+      top={"0"}
+      padding={"1.2rem 1.5rem"}
+      zIndex={"banner"}
+    >
+      <Flex justify={"space-between"} align={"center"} minWidth={"100%"}>
+        <Logo width={"145px"} height={"auto"} />
+        <UnorderedList variant={"navlinks"} marginInlineStart={0}>
+          {navLinks.map((link, idx) => (
+            <ListItem>
+              <Link href={"#"} _hover={{ textDecoration: "none" }}>
+                {link.text}
+              </Link>
+            </ListItem>
+          ))}
+        </UnorderedList>
+        <div>
+          <Button variant={"primary"}>book now</Button>
+          <Button variant={"primary"} marginLeft={"1.125rem"}>
+            contact
+          </Button>
+        </div>
       </Flex>
     </Container>
   );

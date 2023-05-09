@@ -1,23 +1,40 @@
 import { extendTheme } from "@chakra-ui/react";
 import { containerTheme } from "./ContainerTheme";
 import { closeButtonTheme } from "./CloseButtonTheme";
+import { buttonTheme } from "./ButtonTheme";
+import { listTheme } from "./ListTheme";
+import { headingTheme } from "./HeadingTheme";
+import { textTheme } from "./TextTheme";
 
 const theme = extendTheme({
   colors: {
-    brand: {
-      primary: "#161719",
-      trim: "#8b8b8c",
+    text: {
+      primary: "#909090",
+      button: "#d9d9d9",
+      hover: "#fbfbfb",
+    },
+    background: {
+      dark: "#0d0d0d",
+      light: "#ededed",
+    },
+    button: {
+      primary: "#1a1a1a",
+      accent: "#d9d9d9",
     },
   },
   styles: {
     global: {
       body: {
-        backgroundColor: "brand.primary",
+        backgroundColor: "background.dark",
         marginRight: "0",
       },
     },
   },
   components: {
+    Text: textTheme,
+    Heading: headingTheme,
+    Button: buttonTheme,
+    List: listTheme,
     Container: containerTheme,
     CloseButton: closeButtonTheme,
   },
