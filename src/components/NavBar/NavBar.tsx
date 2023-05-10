@@ -28,7 +28,7 @@ export const NavBar = (props: any) => {
         <Logo width={"145px"} height={"auto"} />
         <UnorderedList variant={"navlinks"} marginInlineStart={0}>
           {navLinks.map((link, idx) => (
-            <ListItem>
+            <ListItem key={idx}>
               <Link href={"#"} _hover={{ textDecoration: "none" }}>
                 {link.text}
               </Link>

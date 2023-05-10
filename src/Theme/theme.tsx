@@ -5,6 +5,7 @@ import { buttonTheme } from "./ButtonTheme";
 import { listTheme } from "./ListTheme";
 import { headingTheme } from "./HeadingTheme";
 import { textTheme } from "./TextTheme";
+import { linkTheme } from "./LinkTheme";
 
 const theme = extendTheme({
   colors: {
@@ -34,6 +35,7 @@ const theme = extendTheme({
     Text: textTheme,
     Heading: headingTheme,
     Button: buttonTheme,
+    Link: linkTheme,
     List: listTheme,
     Container: containerTheme,
     CloseButton: closeButtonTheme,
