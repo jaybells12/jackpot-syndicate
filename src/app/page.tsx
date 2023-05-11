@@ -12,13 +12,11 @@ import { Button, useDisclosure } from "@chakra-ui/react";
 import { Features } from "@components/Features";
 
 export default function Home() {
-  const { isOpen, onToggle } = useDisclosure();
   return (
     <>
       <NavBar />
       <Hero />
       <Features />
-      {/* <Features /> */}
     </>
   );
 }

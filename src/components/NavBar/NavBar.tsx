@@ -16,7 +16,6 @@ export const NavBar = (props: any) => {
   return (
     <Container
       as={"nav"}
-      maxWidth={"unset"}
       height={"95px"}
       backgroundColor={"transparent"}
       position={"fixed"}

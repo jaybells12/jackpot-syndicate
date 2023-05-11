@@ -24,7 +24,7 @@ export const Hero = (props: ContainerProps & AspectRatioProps) => {
             "https://player.vimeo.com/video/813019070?h=64f8db3e7b&title=0&portrait=0&muted=1&autopause=0&loop=1&background=1&app_id=122963"
           }
           referrerPolicy={"no-referrer"}
-          style={{ opacity: 0.75 }}
+          style={{ opacity: 0.75, pointerEvents: "none" }}
         />
       </AspectRatio>
       <Box

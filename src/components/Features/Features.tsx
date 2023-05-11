@@ -1,5 +1,6 @@
 import { Box, Container, useDisclosure } from "@chakra-ui/react";
 import { FeaturesItem } from "@components/FeaturesItem";
+import { useRef, MutableRefObject } from "react";
 import { features } from "src/data/staticData";
 
 export const Features = (props: any) => {
@@ -7,15 +8,57 @@ export const Features = (props: any) => {
     <Container
       as={"section"}
       width={"100%"}
-      minHeight={"100vh"}
+      minHeight={"100svh"}
       display={"flex"}
       flexDirection={"column"}
+      justifyContent={"center"}
     >
+      {/* Scroll Behavior is not captured by container unless mouse is moved while inside it*/}
+
       {features.map((item, idx) => (
-        <Box key={idx} marginLeft={"13%"}>
-          <FeaturesItem item={item} linkProps={{ paddingBlock: "3.375rem" }} />
+        <Box
+          key={idx}
+          _first={{ marginTop: "100svh" }}
+          _last={{ marginBottom: "100svh" }}
+        >
+          <FeaturesItem
+            item={item}
+            linkProps={{ paddingBlock: "3.375rem", paddingLeft: "13%" }}
+          />
         </Box>
       ))}
     </Container>
   );
 };
+
+/**
+ *<Box
+        height={"70vh"}
+        overflowY={"auto"}
+        background={"transparent"}
+        marginBlock={"100svh"}
+        scrollSnapStop={"always"}
+        sx={{
+          scrollbarWidth: "none",
+          msOverFlowStyle: "none",
+        }}
+      >
+ *
+<Box
+        ref={boxRef}
+        height={"70vh"}
+        overflowY={"auto"}
+        background={"transparent"}
+        marginBlock={"100svh"}
+        onScroll={(e) => handleWheel(e)}
+        // onMouseEnter={(e) => handleWheel(e)}
+        // onWheel={(e) => handleWheel(e)}
+        // onClick={() => console.log("Clicked")}
+        sx={{
+          scrollbarWidth: "none",
+          msOverFlowStyle: "none",
+        }}
+      >
+
+
+ */
