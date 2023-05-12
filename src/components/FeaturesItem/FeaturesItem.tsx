@@ -19,21 +19,12 @@ export const FeaturesItem = (props: FeaturesItem) => {
   const [scope, animateImg] = useAnimate();
   const linkRef = useRef(null);
   const isInView = useInView(linkRef, { margin: "-35% 0px -35% 0px" });
-  const opacity = useMotionValue(0);
 
   useEffect(() => {
     if (isInView) {
       animate(linkRef.current, { visibility: "visible" }, { duration: 0 });
-      // animate(linkRef.current, { visibility: "visible" }, { duration: 0 }).then(
-      //   () => {
-      //     animate(opacity, 1, { duration: 0.1, ease: "linear" });
-      //   }
-      // );
     } else if (!isInView) {
       animate(linkRef.current, { visibility: "hidden" }, { duration: 0 });
-      // animate(opacity, 0, { duration: 0.1, ease: "linear" }).then(() => {
-      //   animate(linkRef.current, { visibility: "hidden" }, { duration: 0 });
-      // });
     }
   }, [isInView]);
 
