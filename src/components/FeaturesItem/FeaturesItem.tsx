@@ -23,37 +23,50 @@ export const FeaturesItem = (props: FeaturesItem) => {
 
   useEffect(() => {
     if (isInView) {
-      animate(linkRef.current, { visibility: "visible" }, { duration: 0 }).then(
-        () => {
-          animate(opacity, 1, { duration: 0.1, ease: "linear" });
-        }
-      );
+      animate(linkRef.current, { visibility: "visible" }, { duration: 0 });
+      // animate(linkRef.current, { visibility: "visible" }, { duration: 0 }).then(
+      //   () => {
+      //     animate(opacity, 1, { duration: 0.1, ease: "linear" });
+      //   }
+      // );
     } else if (!isInView) {
-      animate(opacity, 0, { duration: 0.1, ease: "linear" }).then(() => {
-        animate(linkRef.current, { visibility: "hidden" }, { duration: 0 });
-      });
+      animate(linkRef.current, { visibility: "hidden" }, { duration: 0 });
+      // animate(opacity, 0, { duration: 0.1, ease: "linear" }).then(() => {
+      //   animate(linkRef.current, { visibility: "hidden" }, { duration: 0 });
+      // });
     }
   }, [isInView]);
 
   const handleMouseEnter = async () => {
-    await animateImg(
-      scope.current,
-      { opacity: 1 },
-      { duration: 0.3, ease: "easeOut" }
-    );
+    await animateImg("img", { opacity: 1 }, { duration: 0.3, ease: "easeOut" });
   };
 
   const handleMouseLeave = async () => {
-    await animateImg(
-      scope.current,
-      { opacity: 0 },
-      { duration: 0.3, ease: "easeOut" }
-    );
+    await animateImg("img", { opacity: 0 }, { duration: 0.3, ease: "easeOut" });
   };
 
   return (
-    <>
-      <motion.div ref={linkRef} initial={{ opacity: 0 }} style={{ opacity }}>
+    <Box ref={scope}>
+      <Image
+        src={item.image.src}
+        alt={item.title}
+        width={item.image.width}
+        height={item.image.height}
+        position={"fixed"}
+        inset={"0"}
+        opacity={"0"}
+        zIndex={"2"}
+        pointerEvents={"none"}
+        sx={{
+          objectFit: "cover",
+          width: "100%",
+          height: "auto",
+          maskImage:
+            "linear-gradient(to top,rgb(255, 255, 255) 0%, rgb(255, 255, 255) 35%, rgba(255,255,255,0) 50%, rgba(255,255,255,0) 75%, rgb(255, 255, 255) 85%, rgb(255, 255, 255) 100%)",
+        }}
+        {...imageProps}
+      />
+      <motion.div ref={linkRef}>
         <Link
           variant={"feature"}
           href={"/"}
@@ -71,10 +84,7 @@ export const FeaturesItem = (props: FeaturesItem) => {
         width={item.image.width}
         height={item.image.height}
         position={"fixed"}
-        top={"0"}
-        right={"0"}
-        bottom={"0"}
-        left={"0"}
+        inset={"0"}
         zIndex={"-1"}
         opacity={"0"}
         willChange={"opacity"}
@@ -86,6 +96,6 @@ export const FeaturesItem = (props: FeaturesItem) => {
         }}
         {...imageProps}
       />
-    </>
+    </Box>
   );
 };

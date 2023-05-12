@@ -12,7 +12,19 @@ export const Features = (props: any) => {
       display={"flex"}
       flexDirection={"column"}
       justifyContent={"center"}
+      position={"relative"} // remove
     >
+      {/* <Box
+        width={"100%"}
+        height={"100%"}
+        opacity={0.75}
+        position={"fixed"}
+        inset={0}
+        pointerEvents={"none"}
+        // bgGradient={
+        //   "linear(to-t,blue 0%, blue 20%, pink 30%, pink 70%, blue 80%, blue 100%)"
+        // }
+      ></Box> */}
       {/* Scroll Behavior is not captured by container unless mouse is moved while inside it*/}
 
       {features.map((item, idx) => (
