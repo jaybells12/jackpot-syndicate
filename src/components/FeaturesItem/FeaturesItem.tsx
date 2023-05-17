@@ -78,7 +78,6 @@ export const FeaturesItem = (props: FeaturesItem) => {
         inset={"0"}
         zIndex={"-1"}
         opacity={"0"}
-        willChange={"opacity"}
         pointerEvents={"none"}
         sx={{
           objectFit: "cover",

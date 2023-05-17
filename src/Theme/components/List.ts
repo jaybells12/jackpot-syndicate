@@ -25,4 +25,4 @@ const variants = {
   }),
 };
 
-export const listTheme = defineMultiStyleConfig({ variants });
+export default defineMultiStyleConfig({ variants });

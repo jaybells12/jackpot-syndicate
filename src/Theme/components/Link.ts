@@ -15,6 +15,6 @@ const variants = {
   }),
 };
 
-export const linkTheme = defineStyleConfig({
+export default defineStyleConfig({
   variants,
 });

@@ -10,6 +10,7 @@ import { Link } from "@chakra-ui/next-js";
 import { FeaturesItem } from "@components/FeaturesItem";
 import { Button, useDisclosure } from "@chakra-ui/react";
 import { Features } from "@components/Features";
+import { Contact } from "@components/Contact";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <NavBar />
       <Hero />
       <Features />
+      <Contact />
     </>
   );
 }

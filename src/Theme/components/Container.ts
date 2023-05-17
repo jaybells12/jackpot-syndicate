@@ -5,4 +5,4 @@ const baseStyle = {
   maxWidth: "unset",
 };
 
-export const containerTheme = defineStyleConfig({ baseStyle });
+export default defineStyleConfig({ baseStyle });

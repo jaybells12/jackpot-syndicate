@@ -20,6 +20,6 @@ const variants = {
   }),
 };
 
-export const buttonTheme = defineStyleConfig({
+export default defineStyleConfig({
   variants,
 });

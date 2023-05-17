@@ -4,6 +4,6 @@ const xl = defineStyle({
   fontSize: "2rem",
 });
 
-export const closeButtonTheme = defineStyleConfig({
+export default defineStyleConfig({
   sizes: { xl },
 });

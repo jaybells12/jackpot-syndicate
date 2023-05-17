@@ -9,6 +9,6 @@ const variants = {
   }),
 };
 
-export const headingTheme = defineStyleConfig({
+export default defineStyleConfig({
   variants,
 });

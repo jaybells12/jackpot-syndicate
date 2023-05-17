@@ -9,6 +9,6 @@ const variants = {
   }),
 };
 
-export const textTheme = defineStyleConfig({
+export default defineStyleConfig({
   variants,
 });
