@@ -4,9 +4,14 @@ const variants = {
   hero: defineStyle({
     fontSize: "2.875rem",
     lineHeight: "1.4",
-    color: "text.button",
+    color: "text.light",
     fontWeight: "300",
   }),
+  contact: defineStyle({
+    fontSize: "1rem", // 0.75rem on Figma
+    fontStyle: "normal",
+    margin: "1rem"
+  })
 };
 
 export default defineStyleConfig({

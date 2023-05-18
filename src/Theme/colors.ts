@@ -1,7 +1,8 @@
 export default {
   text: {
-    primary: "#909090",
-    button: "#d9d9d9",
+    dark: "#1a1a1a",
+    medium: "#909090",
+    light: "#d9d9d9",
     hover: "#fbfbfb",
   },
   background: {
@@ -9,15 +10,33 @@ export default {
     light: "#ededed",
   },
   button: {
-    primary: "#1a1a1a",
-    accent: "#d9d9d9",
+    dark:{
+      primary: "#1a1a1a",
+      accent: "#d9d9d9",
+      trim: "#909090"
+    },
+    light:{
+      primary: "#ededed",
+      accent: "#d9d9d9",
+      trim: "#fbfbfb",
+    }
   },
   icon: {
-    primary: "#1a1a1a",
+    dark: "#1a1a1a",
   },
   form: {
     primary: "#ededed",
     accent: "#d9d9d9",
     trim: "#1a1a1a",
-  }
+  },
 }
+
+/**
+ * Colors, Dark to light
+ * #0d0d0d
+ * #1a1a1a
+ * #909090
+ * #d9d9d9
+ * #ededed
+ * #fbfbfb
+*/

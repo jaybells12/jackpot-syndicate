@@ -1,8 +1,8 @@
 import { Image, Link, ImageProps, LinkProps } from "@chakra-ui/next-js";
-import { Box, useDimensions } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { StaticImageData } from "next/image";
-import { useAnimate, useMotionValue, useTransform } from "framer-motion";
-import { useEffect, useRef, MutableRefObject } from "react";
+import { useAnimate } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { useInView, animate, motion } from "framer-motion";
 
 export type FeaturesItem = {
@@ -52,6 +52,7 @@ export const FeaturesItem = (props: FeaturesItem) => {
           objectFit: "cover",
           width: "100%",
           height: "auto",
+          minHeight: "100%", // used this to bandaid narrow viewports
           maskImage:
             "linear-gradient(to top,rgb(255, 255, 255) 0%, rgb(255, 255, 255) 35%, rgba(255,255,255,0) 50%, rgba(255,255,255,0) 75%, rgb(255, 255, 255) 85%, rgb(255, 255, 255) 100%)",
         }}
@@ -83,6 +84,7 @@ export const FeaturesItem = (props: FeaturesItem) => {
           objectFit: "cover",
           width: "100%",
           height: "auto",
+          minHeight: "100%", // used this to bandaid narrow viewports
         }}
         {...imageProps}
       />

@@ -16,7 +16,7 @@ const variants = {
       listStyle: "none",
       fontSize: "1.25rem", // 1rem on Figma
       lineHeight: "1.5",
-      color: "text.primary",
+      color: "text.medium",
       _hover: {
         color: "text.hover",
         textDecoration: "none",
