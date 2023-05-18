@@ -12,19 +12,15 @@ export const Features = (props: any) => {
       display={"flex"}
       flexDirection={"column"}
       justifyContent={"center"}
+      paddingBlock={"100svh"}
       position={"relative"} // remove
     >
       {features.map((item, idx) => (
-        <Box
+        <FeaturesItem
           key={idx}
-          _first={{ marginTop: "100svh" }}
-          _last={{ marginBottom: "100svh" }}
-        >
-          <FeaturesItem
-            item={item}
-            linkProps={{ paddingBlock: "3.375rem", paddingLeft: "13%" }}
-          />
-        </Box>
+          item={item}
+          linkProps={{ paddingBlock: "3.375rem", paddingLeft: "13%" }}
+        />
       ))}
     </Container>
   );

@@ -18,7 +18,7 @@ export const FeaturesItem = (props: FeaturesItem) => {
   const { item, linkProps, imageProps } = props;
   const [scope, animateImg] = useAnimate();
   const linkRef = useRef(null);
-  const isInView = useInView(linkRef, { margin: "-35% 0px -35% 0px" });
+  const isInView = useInView(linkRef, { margin: "-28% 0px -28% 0px" });
 
   useEffect(() => {
     if (isInView) {
@@ -46,7 +46,7 @@ export const FeaturesItem = (props: FeaturesItem) => {
         position={"fixed"}
         inset={"0"}
         opacity={"0"}
-        zIndex={"2"}
+        zIndex={"3"}
         pointerEvents={"none"}
         sx={{
           objectFit: "cover",
@@ -54,10 +54,11 @@ export const FeaturesItem = (props: FeaturesItem) => {
           height: "auto",
           minHeight: "100%", // used this to bandaid narrow viewports
           maskImage:
-            "linear-gradient(to top,rgb(255, 255, 255) 0%, rgb(255, 255, 255) 35%, rgba(255,255,255,0) 50%, rgba(255,255,255,0) 75%, rgb(255, 255, 255) 85%, rgb(255, 255, 255) 100%)",
+            "linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 12%, rgba(255,255,255,0) 35%, rgba(255,255,255,0) 50%, rgb(255, 255, 255) 65%, rgb(255, 255, 255) 100%)",
         }}
         {...imageProps}
       />
+
       <motion.div ref={linkRef}>
         <Link
           variant={"feature"}

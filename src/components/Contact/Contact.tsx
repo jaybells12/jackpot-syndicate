@@ -7,14 +7,15 @@ export const Contact = (props: any) => {
     <Container as={"section"} bgColor={"form.accent"} paddingBlock={"4rem"}>
       <Flex
         justify={"center"}
-        width={"fit-content"}
         margin={"0 auto"}
         bgColor={"form.primary"}
         borderRadius={"10px"}
         gap={"8rem"}
+        maxWidth={"min(85%, 1200px)"}
+        minWidth={"600px"}
       >
-        <ContactInfo />
-        <ContactForm />
+        <ContactInfo width={"100%"} flex={"1"} />
+        <ContactForm width={"100%"} flex={"2"} />
       </Flex>
     </Container>
   );
