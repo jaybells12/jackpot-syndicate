@@ -11,6 +11,7 @@ import Link from "./components/Link"
 import List from "./components/List"
 import Text from "./components/Text"
 import Input from "./components/Input"
+import Card from "./components/Card"
 
 const overrides = {
   colors,
@@ -18,6 +19,7 @@ const overrides = {
   styles,
   components: {
     Button,
+    Card,
     CloseButton,
     Container,
     Heading,

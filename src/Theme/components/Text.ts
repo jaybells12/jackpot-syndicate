@@ -11,6 +11,12 @@ const variants = {
     fontSize: "1rem", // 0.75rem on Figma
     fontStyle: "normal",
     margin: "1rem"
+  }),
+  card: defineStyle({
+    fontSize: "1rem",
+    fontWeight: "400",
+    lineHeight: "1.125rem",
+    color: "text.light",
   })
 };
 
