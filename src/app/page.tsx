@@ -15,10 +15,15 @@ import { Contact } from "@components/Contact";
 export default function Home() {
   return (
     <>
-      <NavBar />
-      <Hero />
-      <Features />
+      <header>
+        <NavBar />
+      </header>
+      <main>
+        <Hero />
+        <Features />
+      </main>
       <Contact />
     </>
   );
 }
+
