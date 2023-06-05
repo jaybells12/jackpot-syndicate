@@ -8,7 +8,6 @@ export default function ServicesLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Can probably remove margin after pages are built
   return (
     <>
       <header>
