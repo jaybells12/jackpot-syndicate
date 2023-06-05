@@ -1,9 +1,9 @@
-import liveStageImg  from "../../public/LiveStage.png"
-import podcastStudioImg  from "../../public/PodcastStudio.png"
-import recordingStudioImg  from "../../public/RecordingStudio.png"
-import gearRentalImg  from "../../public/GearRental.png"
-import liveBroadcastImg  from "../../public/LiveBroadcast.png"
-import youtubeStudioImg  from "../../public/YoutubeStudio.png"
+import liveStageImg  from "../../public/features_live-stage.png"
+import podcastStudioImg  from "../../public/features_podcast-studio.png"
+import recordingStudioImg  from "../../public/features_recording-studio.png"
+import gearRentalImg  from "../../public/features_gear-rental.png"
+import liveBroadcastImg  from "../../public/features_live-broadcast.png"
+import youtubeStudioImg  from "../../public/features_youtube-studio.png"
 
 const features = [
   {
