@@ -1,6 +1,5 @@
-import { Box, Container, useDisclosure } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 import { FeaturesItem } from "@components/FeaturesItem";
-import { useRef, MutableRefObject } from "react";
 import { features } from "src/data/staticData";
 
 export const Features = (props: any) => {
@@ -13,7 +12,7 @@ export const Features = (props: any) => {
       flexDirection={"column"}
       justifyContent={"center"}
       paddingBlock={"100svh"}
-      position={"relative"} // remove
+      position={"relative"} // remove ??
     >
       {features.map((item, idx) => (
         <FeaturesItem

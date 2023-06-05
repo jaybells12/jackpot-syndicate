@@ -4,7 +4,11 @@ import { Container, Flex } from "@chakra-ui/react";
 
 export const Contact = (props: any) => {
   return (
-    <Container as={"section"} bgColor={"form.accent"} paddingBlock={"4rem"}>
+    <Container
+      as={"footer"}
+      bgColor={"form.accent"}
+      paddingBlock={"4rem"}
+    >
       <Flex
         justify={"center"}
         margin={"0 auto"}
@@ -14,8 +18,14 @@ export const Contact = (props: any) => {
         maxWidth={"min(85%, 1200px)"}
         minWidth={"600px"}
       >
-        <ContactInfo width={"100%"} flex={"1"} />
-        <ContactForm width={"100%"} flex={"2"} />
+        <ContactInfo
+          width={"100%"}
+          flex={"1"}
+        />
+        <ContactForm
+          width={"100%"}
+          flex={"2"}
+        />
       </Flex>
     </Container>
   );
