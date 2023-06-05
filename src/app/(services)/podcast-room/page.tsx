@@ -1,20 +1,20 @@
 "use client";
 
 import { Container, Heading } from "@chakra-ui/react";
-import backgroundImg from "@public/services/service_recording-studio.webp";
-import card01 from "@public/services/service_youtube-studio_card-01.webp";
+import backgroundImg from "@public/services/service_podcast-room.webp";
+import card01 from "@public/services/service_podcast-room_card-01.webp";
 import { Image } from "@chakra-ui/next-js";
 import { ServiceCard } from "@components/ServiceCard";
 
-const TITLE = "Youtube Studio";
+const TITLE = "Podcast Room";
 
 const DESCRIPTION =
-  "Our TurnKey Youtube Studio is perfect for Talking Head Backdrop Style videos. Recording your video here in High Quality 4k Beautiful Quality Starting at $75/Hour. Just Bring your SD Card.";
+  "Use our White Wall Room dressed with plants and furniture, or let us know a few weeks in advance and we can design a set for you, exclusively. Top End Audio Gear and Mixer Included. Live switcher for Live Broadcast upon request.";
 
 const GEAR =
-  "A7sIII Camera\nLarge Viewing Monitor\nButterfly and Clam Lighting\nWide Array of Backgrounds and Green Screen";
+  "11”x11’\n4 Shure Sm7b\n4 WA Pre’s\n4 A7sII Cameras\nMini ATEM Pro ISO (switcher)\nRodeCaster 4 Channel A/D";
 
-const ALT = "Woman opening a box";
+const ALT = "Podcast Room";
 
 export default function ServicePage() {
   return (
@@ -39,7 +39,7 @@ export default function ServicePage() {
         altText={ALT}
         titleLeft={"Description"}
         textLeft={DESCRIPTION}
-        titleRight={"Gear"}
+        titleRight={"Size/Gear"}
         textRight={GEAR}
       />
     </Container>

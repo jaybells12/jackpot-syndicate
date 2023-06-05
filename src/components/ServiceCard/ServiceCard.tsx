@@ -44,7 +44,10 @@ export const ServiceCard = ({
           </Heading>
           <Text variant={"card"}>{textLeft}</Text>
         </Box>
-        <Box as={"article"}>
+        <Box
+          as={"article"}
+          minWidth={"30%"}
+        >
           <Heading
             as={"h3"}
             variant={"card"}
