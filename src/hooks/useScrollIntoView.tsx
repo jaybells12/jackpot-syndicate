@@ -1,12 +1,10 @@
 // This hook eases the scroll animation, the easing function can be swapped out for other types,
 // Change the duration to lengthen or shorten the animation, included different easeIn functions
 import { OffsetTopHandle } from '@components/Contact'
-import { MutableRefObject } from 'react'
+import { RefObject } from 'react'
 
 // Need to pass a origin ref and an array of target Refs to this, instead of accessing DOM directly
-export const useScrollEasing = (
-  targetRef: MutableRefObject<OffsetTopHandle>
-) => {
+export const useScrollEasing = (targetRef: RefObject<OffsetTopHandle>) => {
   return (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     e.preventDefault()
 
@@ -51,7 +49,8 @@ export const useScrollEasing = (
 
       requestAnimationFrame(animation)
     }
-
-    scrollToPosition(targetRef.current.offsetTop())
+    if (targetRef.current) {
+      scrollToPosition(targetRef.current.offsetTop())
+    }
   }
 }

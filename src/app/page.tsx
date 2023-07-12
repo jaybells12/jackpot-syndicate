@@ -12,7 +12,6 @@ import { NavBar } from '@components/NavBar'
 import { Hero } from '@components/Hero'
 import { Features } from '@components/Features'
 import { Contact, OffsetTopHandle } from '@components/Contact'
-import { MutableRefObject } from 'react'
 
 export default function Home() {
   const footerRef = useRef<OffsetTopHandle>(null)

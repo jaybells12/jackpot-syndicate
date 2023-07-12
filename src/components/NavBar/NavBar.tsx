@@ -10,8 +10,14 @@ import { Link } from '@chakra-ui/next-js'
 import { navLinks } from 'src/data/staticData'
 import { Logo } from '@components/Logo'
 import { useScrollEasing } from 'src/hooks/useScrollIntoView'
+import { OffsetTopHandle } from '@components/Contact'
+import { RefObject } from 'react'
 
-export const NavBar = (props: any) => {
+type NavBarProps = {
+  footerRef: RefObject<OffsetTopHandle>
+}
+
+export const NavBar = (props: NavBarProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { footerRef } = props // type this out
   return (
