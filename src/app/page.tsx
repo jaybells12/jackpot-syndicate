@@ -22,9 +22,7 @@ export default function Home() {
         <Hero />
         <Features />
       </main>
-      <footer>
-        <Contact />
-      </footer>
+      <Contact />
     </>
   )
 }
