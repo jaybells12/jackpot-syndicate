@@ -14,7 +14,7 @@ const features = [
   {
     title: 'Podcast Studio',
     image: podcastStudioImg,
-    url: '/podcase-room',
+    url: '/podcast-room',
   },
   {
     title: 'Youtube Studio',
