@@ -35,10 +35,12 @@ export const NavBar = (props: NavBarProps) => {
         align={'center'}
         minWidth={'100%'}
       >
-        <Logo
-          width={'145px'}
-          height={'auto'}
-        />
+        <Link href={'/'}>
+          <Logo
+            width={'145px'}
+            height={'auto'}
+          />
+        </Link>
         <UnorderedList
           variant={'navlinks'}
           marginInlineStart={0}
