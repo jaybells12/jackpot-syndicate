@@ -9,10 +9,11 @@ import {
 import { Link } from '@chakra-ui/next-js'
 import { navLinks } from 'src/data/staticData'
 import { Logo } from '@components/Logo'
+import { useScrollEasing } from 'src/hooks/useScrollIntoView'
 
 export const NavBar = (props: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-
+  const { footerRef } = props // type this out
   return (
     <Container
       as={'nav'}
@@ -48,19 +49,19 @@ export const NavBar = (props: any) => {
           ))}
         </UnorderedList>
         <div>
-          <Link
-            href={'#contact'}
+          <Button
+            onClick={useScrollEasing(footerRef)}
             variant={'primary'}
           >
             book now
-          </Link>
-          <Link
-            href={'#contact'}
+          </Button>
+          <Button
+            onClick={useScrollEasing(footerRef)}
             variant={'primary'}
             marginLeft={'1.125rem'}
           >
             contact
-          </Link>
+          </Button>
         </div>
       </Flex>
     </Container>

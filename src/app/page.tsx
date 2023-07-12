@@ -7,22 +7,25 @@
 // import { Link } from '@chakra-ui/next-js'
 // import { FeaturesItem } from '@components/FeaturesItem'
 // import { Button, useDisclosure } from '@chakra-ui/react'
+import { useRef } from 'react'
 import { NavBar } from '@components/NavBar'
 import { Hero } from '@components/Hero'
 import { Features } from '@components/Features'
 import { Contact } from '@components/Contact'
+import { MutableRefObject } from 'react'
 
 export default function Home() {
+  const footerRef = useRef(null)
   return (
     <>
       <header>
-        <NavBar />
+        <NavBar footerRef={footerRef} />
       </header>
       <main>
         <Hero />
         <Features />
       </main>
-      <Contact />
+      <Contact ref={footerRef} />
     </>
   )
 }

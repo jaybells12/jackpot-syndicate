@@ -1,14 +1,37 @@
 import { ContactForm } from '@components/ContactForm'
 import { ContactInfo } from '@components/ContactInfo'
 import { Container, Flex } from '@chakra-ui/react'
+import { forwardRef, useImperativeHandle, useRef } from 'react'
 
-export const Contact = (props: any) => {
+export type OffsetTopHandle = {
+  offsetTop: () => number
+}
+
+export const Contact = forwardRef<OffsetTopHandle, any>((props, ref) => {
+  const footerRef = useRef<HTMLElement>(null)
+
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        offsetTop() {
+          if (footerRef.current) {
+            return footerRef.current.offsetTop
+          } else {
+            return 0
+          }
+        },
+      }
+    },
+    []
+  )
+
   return (
     <Container
       as={'footer'}
       bgColor={'form.accent'}
       paddingBlock={'4rem'}
-      id={'contact'}
+      ref={footerRef}
     >
       <Flex
         justify={'center'}
@@ -30,4 +53,4 @@ export const Contact = (props: any) => {
       </Flex>
     </Container>
   )
-}
+})
