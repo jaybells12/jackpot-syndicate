@@ -16,9 +16,7 @@ export default function ServicesLayout({
         <NavBar />
       </header>
       <main>{children}</main>
-      <footer>
-        <Contact ref={footerRef} />
-      </footer>
+      <Contact ref={footerRef} />
     </>
   )
 }
