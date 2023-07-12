@@ -48,10 +48,6 @@ export const NavBar = (props: any) => {
           ))}
         </UnorderedList>
         <div>
-          {/* <Button variant={"primary"}>book now</Button>
-          <Button variant={"primary"} marginLeft={"1.125rem"}>
-            contact
-          </Button> */}
           <Link
             href={'#contact'}
             variant={'primary'}

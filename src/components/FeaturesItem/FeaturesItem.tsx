@@ -1,9 +1,32 @@
-import { Image, Link, ImageProps, LinkProps } from '@chakra-ui/next-js'
-import { Box } from '@chakra-ui/react'
-import { StaticImageData } from 'next/image'
+import { Link, ImageProps, LinkProps } from '@chakra-ui/next-js'
+import { Box, chakra, ChakraComponent } from '@chakra-ui/react'
+import NextImage, {
+  StaticImageData,
+  ImageProps as NextImageProps,
+} from 'next/image'
 import { useAnimate } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import { useInView, animate, motion } from 'framer-motion'
+
+// This fix is temporary until chakra/next-js play nice together again
+const Image: ChakraComponent<'img', NextImageProps> = chakra(NextImage, {
+  shouldForwardProp: (prop) =>
+    [
+      'src',
+      'alt',
+      'width',
+      'height',
+      'fill',
+      'loader',
+      'quality',
+      'priority',
+      'loading',
+      'placeholder',
+      'blurDataURL',
+      'unoptimized',
+      'onLoadingComplete',
+    ].includes(prop),
+})
 
 export type FeaturesItem = {
   linkProps?: Partial<LinkProps>
@@ -58,7 +81,6 @@ export const FeaturesItem = (props: FeaturesItem) => {
         }}
         {...imageProps}
       />
-
       <motion.div ref={linkRef}>
         <Link
           variant={'feature'}
