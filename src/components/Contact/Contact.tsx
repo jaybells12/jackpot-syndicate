@@ -18,7 +18,7 @@ type ContactProps = {
 }
 
 export const Contact = forwardRef<OffsetTopHandle, ContactProps>(
-  (props, ref) => {
+  function Contact(props, ref) {
     const footerRef = useRef<HTMLElement>(null)
 
     useImperativeHandle(
