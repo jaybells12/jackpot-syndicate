@@ -1,32 +1,10 @@
 import { Link, ImageProps, LinkProps } from '@chakra-ui/next-js'
-import { Box, chakra, ChakraComponent } from '@chakra-ui/react'
-import NextImage, {
-  StaticImageData,
-  ImageProps as NextImageProps,
-} from 'next/image'
+import { Box } from '@chakra-ui/react'
+import { StaticImageData } from 'next/image'
 import { useAnimate } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import { useInView, animate, motion } from 'framer-motion'
-
-// This fix is temporary until chakra/next-js play nice together again
-const Image: ChakraComponent<'img', NextImageProps> = chakra(NextImage, {
-  shouldForwardProp: (prop) =>
-    [
-      'src',
-      'alt',
-      'width',
-      'height',
-      'fill',
-      'loader',
-      'quality',
-      'priority',
-      'loading',
-      'placeholder',
-      'blurDataURL',
-      'unoptimized',
-      'onLoadingComplete',
-    ].includes(prop),
-})
+import { TempImage } from '@components/TempImage'
 
 export type FeaturesItem = {
   linkProps?: Partial<LinkProps>
@@ -34,6 +12,7 @@ export type FeaturesItem = {
   item: {
     title: string
     image: StaticImageData
+    url: string
   }
 }
 
@@ -61,7 +40,7 @@ export const FeaturesItem = (props: FeaturesItem) => {
 
   return (
     <Box ref={scope}>
-      <Image
+      <TempImage
         src={item.image.src}
         alt={item.title}
         width={item.image.width}
@@ -84,7 +63,7 @@ export const FeaturesItem = (props: FeaturesItem) => {
       <motion.div ref={linkRef}>
         <Link
           variant={'feature'}
-          href={'/'}
+          href={item.url}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           {...linkProps}
@@ -92,7 +71,7 @@ export const FeaturesItem = (props: FeaturesItem) => {
           {item.title}
         </Link>
       </motion.div>
-      <Image
+      <TempImage
         ref={scope}
         src={item.image.src}
         alt={item.title}

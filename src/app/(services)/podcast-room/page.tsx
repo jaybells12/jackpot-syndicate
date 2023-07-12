@@ -4,6 +4,7 @@ import { Container, Heading } from '@chakra-ui/react'
 import backgroundImg from '@public/services/service_podcast-room.webp'
 import card01 from '@public/services/service_podcast-room_card-01.webp'
 import { Image } from '@chakra-ui/next-js'
+import { TempImage } from '@components/TempImage'
 import { ServiceCard } from '@components/ServiceCard'
 
 const TITLE = 'Podcast Room'
@@ -29,7 +30,7 @@ export default function ServicePage() {
       >
         {TITLE}
       </Heading>
-      <Image
+      <TempImage
         src={backgroundImg}
         alt={'recording studio'}
         opacity={'20%'}

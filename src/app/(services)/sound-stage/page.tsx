@@ -4,6 +4,7 @@ import { Container, Heading } from '@chakra-ui/react'
 import backgroundImg from '@public/services/service_sound-stage.webp'
 import card01 from '@public/services/service_sound-stage_card-01.webp'
 import { Image } from '@chakra-ui/next-js'
+import { TempImage } from '@components/TempImage'
 import { ServiceCard } from '@components/ServiceCard'
 
 const TITLE = 'Sound Stage'
@@ -28,7 +29,7 @@ export default function ServicePage() {
       >
         {TITLE}
       </Heading>
-      <Image
+      <TempImage
         src={backgroundImg}
         alt={'recording studio'}
         opacity={'20%'}

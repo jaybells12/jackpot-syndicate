@@ -7,6 +7,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { Image } from '@chakra-ui/next-js'
+import { TempImage } from '@components/TempImage'
 import { StaticImageData } from 'next/image'
 
 export type ServiceCardProps = {
@@ -29,7 +30,7 @@ export const ServiceCard = ({
   return (
     <Card variant={'service'}>
       <CardBody>
-        <Image
+        <TempImage
           src={cardImg}
           alt={altText}
         />
