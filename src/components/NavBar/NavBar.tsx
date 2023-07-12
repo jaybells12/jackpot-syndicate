@@ -46,7 +46,7 @@ export const NavBar = (props: NavBarProps) => {
           {navLinks.map((link, idx) => (
             <ListItem key={idx}>
               <Link
-                href={'#'}
+                href={link.url}
                 _hover={{ textDecoration: 'none' }}
               >
                 {link.text}

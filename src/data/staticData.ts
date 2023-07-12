@@ -39,16 +39,17 @@ const features = [
 const navLinks = [
   {
     text: 'Jackpot Studios',
+    url: '/',
   },
-  {
-    text: 'Work',
-  },
-  {
-    text: 'Equipment',
-  },
-  {
-    text: 'About',
-  },
+  // {
+  //   text: 'Work',
+  // },
+  // {
+  //   text: 'Equipment',
+  // },
+  // {
+  //   text: 'About',
+  // },
 ]
 
 const hero = {
