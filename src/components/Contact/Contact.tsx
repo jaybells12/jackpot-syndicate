@@ -8,6 +8,7 @@ export const Contact = (props: any) => {
       as={'footer'}
       bgColor={'form.accent'}
       paddingBlock={'4rem'}
+      id={'contact'}
     >
       <Flex
         justify={'center'}
