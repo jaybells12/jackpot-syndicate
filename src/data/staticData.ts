@@ -1,59 +1,55 @@
-import liveStageImg  from "../../public/features_live-stage.png"
-import podcastStudioImg  from "../../public/features_podcast-studio.png"
-import recordingStudioImg  from "../../public/features_recording-studio.png"
-import gearRentalImg  from "../../public/features_gear-rental.png"
-import liveBroadcastImg  from "../../public/features_live-broadcast.png"
-import youtubeStudioImg  from "../../public/features_youtube-studio.png"
+import liveStageImg from '../../public/features_live-stage.png'
+import podcastStudioImg from '../../public/features_podcast-studio.png'
+import recordingStudioImg from '../../public/features_recording-studio.png'
+import gearRentalImg from '../../public/features_gear-rental.png'
+import liveBroadcastImg from '../../public/features_live-broadcast.png'
+import youtubeStudioImg from '../../public/features_youtube-studio.png'
 
 const features = [
   {
-    title: "Live Stage",
+    title: 'Live Stage',
     image: liveStageImg,
   },
   {
-    title: "Podcast Studio",
+    title: 'Podcast Studio',
     image: podcastStudioImg,
   },
   {
-    title: "Youtube Studio",
+    title: 'Youtube Studio',
     image: youtubeStudioImg,
   },
   {
-    title: "Recording Studio / ISO Booth",
+    title: 'Recording Studio / ISO Booth',
     image: recordingStudioImg,
   },
   {
-    title: "Live Broadcasts & Events",
+    title: 'Live Broadcasts & Events',
     image: liveBroadcastImg,
   },
   {
-    title: "Gear Rental List",
+    title: 'Gear Rental List',
     image: gearRentalImg,
-  }
+  },
 ]
 
 const navLinks = [
   {
-    text: "Jackpot Studios"
+    text: 'Jackpot Studios',
   },
   {
-    text: "Work"
+    text: 'Work',
   },
   {
-    text: "Equipment"
+    text: 'Equipment',
   },
   {
-    text: "About"
+    text: 'About',
   },
 ]
 
 const hero = {
-  title: "We Build. You Grow. We Cultivate.",
-  text: "We help Creators and Brands grow their communities to maximize earnings across social platforms.",
+  title: 'We Build. You Grow. We Cultivate.',
+  text: 'We help Creators and Brands grow their communities to maximize earnings across social platforms.',
 }
 
-export {
-  features,
-  navLinks,
-  hero
-}
+export { features, navLinks, hero }

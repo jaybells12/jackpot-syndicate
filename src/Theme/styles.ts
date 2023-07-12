@@ -1,8 +1,8 @@
 export default {
   global: {
     body: {
-      backgroundColor: "background.dark",
-      marginRight: "0",
+      backgroundColor: 'background.dark',
+      marginRight: '0',
     },
   },
 }

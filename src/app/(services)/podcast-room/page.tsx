@@ -1,47 +1,47 @@
-"use client";
+'use client'
 
-import { Container, Heading } from "@chakra-ui/react";
-import backgroundImg from "@public/services/service_podcast-room.webp";
-import card01 from "@public/services/service_podcast-room_card-01.webp";
-import { Image } from "@chakra-ui/next-js";
-import { ServiceCard } from "@components/ServiceCard";
+import { Container, Heading } from '@chakra-ui/react'
+import backgroundImg from '@public/services/service_podcast-room.webp'
+import card01 from '@public/services/service_podcast-room_card-01.webp'
+import { Image } from '@chakra-ui/next-js'
+import { ServiceCard } from '@components/ServiceCard'
 
-const TITLE = "Podcast Room";
+const TITLE = 'Podcast Room'
 
 const DESCRIPTION =
-  "Use our White Wall Room dressed with plants and furniture, or let us know a few weeks in advance and we can design a set for you, exclusively. Top End Audio Gear and Mixer Included. Live switcher for Live Broadcast upon request.";
+  'Use our White Wall Room dressed with plants and furniture, or let us know a few weeks in advance and we can design a set for you, exclusively. Top End Audio Gear and Mixer Included. Live switcher for Live Broadcast upon request.'
 
 const GEAR =
-  "11”x11’\n4 Shure Sm7b\n4 WA Pre’s\n4 A7sII Cameras\nMini ATEM Pro ISO (switcher)\nRodeCaster 4 Channel A/D";
+  '11”x11’\n4 Shure Sm7b\n4 WA Pre’s\n4 A7sII Cameras\nMini ATEM Pro ISO (switcher)\nRodeCaster 4 Channel A/D'
 
-const ALT = "Podcast Room";
+const ALT = 'Podcast Room'
 
 export default function ServicePage() {
   return (
     <Container
-      as={"section"}
-      minHeight={"100svh"}
-      position={"relative"}
+      as={'section'}
+      minHeight={'100svh'}
+      position={'relative'}
     >
       <Heading
-        as={"h1"}
-        variant={"service"}
+        as={'h1'}
+        variant={'service'}
       >
         {TITLE}
       </Heading>
       <Image
         src={backgroundImg}
-        alt={"recording studio"}
-        opacity={"20%"}
+        alt={'recording studio'}
+        opacity={'20%'}
       />
       <ServiceCard
         cardImg={card01}
         altText={ALT}
-        titleLeft={"Description"}
+        titleLeft={'Description'}
         textLeft={DESCRIPTION}
-        titleRight={"Size/Gear"}
+        titleRight={'Size/Gear'}
         textRight={GEAR}
       />
     </Container>
-  );
+  )
 }

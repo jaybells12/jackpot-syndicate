@@ -1,12 +1,12 @@
-"use client";
+'use client'
 
-import { Contact } from "@components/Contact";
-import { NavBar } from "@components/NavBar";
+import { Contact } from '@components/Contact'
+import { NavBar } from '@components/NavBar'
 
 export default function ServicesLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <>
@@ -18,5 +18,5 @@ export default function ServicesLayout({
         <Contact />
       </footer>
     </>
-  );
+  )
 }

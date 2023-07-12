@@ -5,18 +5,18 @@ import {
   CardFooter,
   Heading,
   Text,
-} from "@chakra-ui/react";
-import { Image } from "@chakra-ui/next-js";
-import { StaticImageData } from "next/image";
+} from '@chakra-ui/react'
+import { Image } from '@chakra-ui/next-js'
+import { StaticImageData } from 'next/image'
 
 export type ServiceCardProps = {
-  cardImg: StaticImageData;
-  altText: string;
-  titleLeft: string;
-  textLeft: string;
-  titleRight: string;
-  textRight: string;
-};
+  cardImg: StaticImageData
+  altText: string
+  titleLeft: string
+  textLeft: string
+  titleRight: string
+  textRight: string
+}
 
 export const ServiceCard = ({
   cardImg,
@@ -27,7 +27,7 @@ export const ServiceCard = ({
   textLeft,
 }: ServiceCardProps) => {
   return (
-    <Card variant={"service"}>
+    <Card variant={'service'}>
       <CardBody>
         <Image
           src={cardImg}
@@ -35,28 +35,28 @@ export const ServiceCard = ({
         />
       </CardBody>
       <CardFooter>
-        <Box as={"article"}>
+        <Box as={'article'}>
           <Heading
-            as={"h3"}
-            variant={"card"}
+            as={'h3'}
+            variant={'card'}
           >
             {titleLeft}
           </Heading>
-          <Text variant={"card"}>{textLeft}</Text>
+          <Text variant={'card'}>{textLeft}</Text>
         </Box>
         <Box
-          as={"article"}
-          minWidth={"30%"}
+          as={'article'}
+          minWidth={'30%'}
         >
           <Heading
-            as={"h3"}
-            variant={"card"}
+            as={'h3'}
+            variant={'card'}
           >
             {titleRight}
           </Heading>
-          <Text variant={"card"}>{textRight}</Text>
+          <Text variant={'card'}>{textRight}</Text>
         </Box>
       </CardFooter>
     </Card>
-  );
-};
+  )
+}

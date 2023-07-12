@@ -1,33 +1,33 @@
 export default {
   text: {
-    dark: "#1a1a1a",
-    medium: "#909090",
-    light: "#d9d9d9",
-    hover: "#fbfbfb",
+    dark: '#1a1a1a',
+    medium: '#909090',
+    light: '#d9d9d9',
+    hover: '#fbfbfb',
   },
   background: {
-    dark: "#0d0d0d",
-    light: "#ededed",
+    dark: '#0d0d0d',
+    light: '#ededed',
   },
   button: {
-    dark:{
-      primary: "#1a1a1a",
-      accent: "#d9d9d9",
-      trim: "#909090"
+    dark: {
+      primary: '#1a1a1a',
+      accent: '#d9d9d9',
+      trim: '#909090',
     },
-    light:{
-      primary: "#ededed",
-      accent: "#d9d9d9",
-      trim: "#fbfbfb",
-    }
+    light: {
+      primary: '#ededed',
+      accent: '#d9d9d9',
+      trim: '#fbfbfb',
+    },
   },
   icon: {
-    dark: "#1a1a1a",
+    dark: '#1a1a1a',
   },
   form: {
-    primary: "#ededed",
-    accent: "#d9d9d9",
-    trim: "#1a1a1a",
+    primary: '#ededed',
+    accent: '#d9d9d9',
+    trim: '#1a1a1a',
   },
 }
 
@@ -39,4 +39,4 @@ export default {
  * #d9d9d9
  * #ededed
  * #fbfbfb
-*/
+ */

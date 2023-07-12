@@ -7,18 +7,18 @@ const { definePartsStyle, defineMultiStyleConfig } =
 const variants = {
   default: definePartsStyle({
     field: {
-      bgColor: "inherit",
-      borderBottom: "1px solid",
-      borderColor: "form.trim",
-      borderRadius: "none",
-      height: "28px"
+      bgColor: 'inherit',
+      borderBottom: '1px solid',
+      borderColor: 'form.trim',
+      borderRadius: 'none',
+      height: '28px',
     },
-  })
+  }),
 }
 
-export default defineMultiStyleConfig({ 
+export default defineMultiStyleConfig({
   variants,
   defaultProps: {
-    variant: "default",
-  } 
+    variant: 'default',
+  },
 })
