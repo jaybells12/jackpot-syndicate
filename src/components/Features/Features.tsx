@@ -11,7 +11,7 @@ export const Features = (props: any) => {
       display={'flex'}
       flexDirection={'column'}
       justifyContent={'center'}
-      paddingBlock={'100svh'}
+      paddingBlock={'50svh 50svh'}
       position={'relative'} // remove ??
     >
       {features.map((item, idx) => (
