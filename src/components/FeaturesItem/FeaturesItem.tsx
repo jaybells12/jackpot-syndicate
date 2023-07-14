@@ -20,7 +20,7 @@ export const FeaturesItem = (props: FeaturesItem) => {
   const { item, linkProps, imageProps } = props
   const [scope, animateImg] = useAnimate()
   const linkRef = useRef(null)
-  const isInView = useInView(linkRef, { margin: '-28% 0px -28% 0px' })
+  const isInView = useInView(linkRef, { margin: '-28% 0px -33% 0px' })
 
   useEffect(() => {
     if (isInView) {
