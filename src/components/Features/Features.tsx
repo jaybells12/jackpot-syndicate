@@ -11,8 +11,9 @@ export const Features = (props: any) => {
       display={'flex'}
       flexDirection={'column'}
       justifyContent={'center'}
-      paddingBlock={'100svh'}
-      position={'relative'} // remove ??
+      paddingBlock={'25svh 25svh'}
+      position={'relative'} // pos & zindex to create new stacking context
+      zIndex={'10'}
     >
       {features.map((item, idx) => (
         <FeaturesItem

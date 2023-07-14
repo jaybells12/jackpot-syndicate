@@ -20,7 +20,7 @@ export const FeaturesItem = (props: FeaturesItem) => {
   const { item, linkProps, imageProps } = props
   const [scope, animateImg] = useAnimate()
   const linkRef = useRef(null)
-  const isInView = useInView(linkRef, { margin: '-28% 0px -28% 0px' })
+  const isInView = useInView(linkRef, { margin: '-28% 0px -33% 0px' })
 
   useEffect(() => {
     if (isInView) {
@@ -37,7 +37,7 @@ export const FeaturesItem = (props: FeaturesItem) => {
   const handleMouseLeave = async () => {
     await animateImg('img', { opacity: 0 }, { duration: 0.3, ease: 'easeOut' })
   }
-
+  // Box has pos:relative & zIndex: 10 to create new stacking context
   return (
     <Box ref={scope}>
       <TempImage
@@ -48,7 +48,7 @@ export const FeaturesItem = (props: FeaturesItem) => {
         position={'fixed'}
         inset={'0'}
         opacity={'0'}
-        zIndex={'3'}
+        zIndex={'7'}
         pointerEvents={'none'}
         sx={{
           objectFit: 'cover',
@@ -66,6 +66,8 @@ export const FeaturesItem = (props: FeaturesItem) => {
           href={item.url}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
+          position={'relative'}
+          zIndex={'6'}
           {...linkProps}
         >
           {item.title}
@@ -79,7 +81,7 @@ export const FeaturesItem = (props: FeaturesItem) => {
         height={item.image.height}
         position={'fixed'}
         inset={'0'}
-        zIndex={'-1'}
+        zIndex={'5'}
         opacity={'0'}
         pointerEvents={'none'}
         sx={{
