@@ -2,7 +2,7 @@ import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
 const variants = {
   hero: defineStyle({
-    fontSize: '3.375rem',
+    fontSize: 'clamp(2rem, 3vw, 5rem)', //3.375rem
     fontWeight: '400',
     lineHeight: '1.2',
     color: 'text.light',
