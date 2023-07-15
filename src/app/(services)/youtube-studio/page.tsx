@@ -31,6 +31,7 @@ export default function ServicePage() {
         {TITLE}
       </Heading>
       <TempImage
+        priority
         src={backgroundImg}
         alt={'recording studio'}
         opacity={'20%'}
