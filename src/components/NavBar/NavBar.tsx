@@ -5,6 +5,9 @@ import {
   Button,
   UnorderedList,
   ListItem,
+  useBreakpoint,
+  useBreakpointValue,
+  Box,
 } from '@chakra-ui/react'
 import { Link } from '@chakra-ui/next-js'
 import { navLinks } from 'src/data/staticData'
@@ -19,6 +22,9 @@ type NavBarProps = {
 
 export const NavBar = (props: NavBarProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const breakpoint = useBreakpoint()
+  // const breakpointValue = useBreakpointValue()
+  console.log(breakpoint)
   const { footerRef } = props // type this out
   return (
     <Container
@@ -31,7 +37,7 @@ export const NavBar = (props: NavBarProps) => {
       zIndex={'banner'}
     >
       <Flex
-        justify={'space-between'}
+        justify={['center', null, 'space-between']}
         align={'center'}
         minWidth={'100%'}
       >
@@ -44,6 +50,7 @@ export const NavBar = (props: NavBarProps) => {
         <UnorderedList
           variant={'navlinks'}
           marginInlineStart={0}
+          display={['none', null, 'flex']}
         >
           {navLinks.map((link, idx) => (
             <ListItem key={idx}>
@@ -56,7 +63,7 @@ export const NavBar = (props: NavBarProps) => {
             </ListItem>
           ))}
         </UnorderedList>
-        <div>
+        <Box display={['none', null, 'flex']}>
           <Button
             onClick={useScrollEasing(footerRef)}
             variant={'primary'}
@@ -70,7 +77,7 @@ export const NavBar = (props: NavBarProps) => {
           >
             contact
           </Button>
-        </div>
+        </Box>
       </Flex>
     </Container>
   )
