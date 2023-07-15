@@ -1,9 +1,10 @@
 'use client'
 
 import { Container, Heading } from '@chakra-ui/react'
-import backgroundImg from '@public/services/service_podcast-room.webp'
-import card01 from '@public/services/service_podcast-room_card-01.webp'
-import { Image } from '@chakra-ui/next-js'
+import backgroundImg from '@public/service_background_podcast.webp'
+import card01 from '@public/card_podcast-01.webp'
+import card02 from '@public/card_podcast-02.webp'
+// import { Image } from '@chakra-ui/next-js'
 import { TempImage } from '@components/TempImage'
 import { ServiceCard } from '@components/ServiceCard'
 

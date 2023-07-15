@@ -1,9 +1,11 @@
 'use client'
 
 import { Container, Heading } from '@chakra-ui/react'
-import backgroundImg from '@public/services/service_sound-stage.webp'
-import card01 from '@public/services/service_sound-stage_card-01.webp'
-import { Image } from '@chakra-ui/next-js'
+import backgroundImg from '@public/service_background_live-stage.webp'
+import card01 from '@public/card_live-stage-01.webp'
+import card02 from '@public/card_live-stage-02.webp'
+import card03 from '@public/card_live-stage-03.webp'
+// import { Image } from '@chakra-ui/next-js'
 import { TempImage } from '@components/TempImage'
 import { ServiceCard } from '@components/ServiceCard'
 
