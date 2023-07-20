@@ -15,10 +15,16 @@ export const Hero = (props: ContainerProps & AspectRatioProps) => {
       as={'section'}
       width={'full'}
       maxWidth={'unset'}
-      backgroundColor={'black'}
+      backgroundColor={'background.dark'}
       position={'relative'}
+      overflow={'hidden'}
     >
-      <AspectRatio ratio={16.27 / 9}>
+      <AspectRatio
+        ratio={16.27 / 9}
+        marginTop={['100px', null, null, null, '0']}
+        width={['300%', null, '150%', null, '100%']}
+        marginLeft={['-4px', null, '-3px', null, '0']}
+      >
         <iframe
           src={
             'https://player.vimeo.com/video/813019070?h=64f8db3e7b&title=0&portrait=0&muted=1&autopause=0&loop=1&background=1&app_id=122963'
@@ -32,6 +38,7 @@ export const Hero = (props: ContainerProps & AspectRatioProps) => {
         top={'50%'}
         left={'50%'}
         transform={'translate(-50%, -50%)'}
+        width={['80%', null, '60%', 'unset']}
       >
         <Heading
           as={'h1'}

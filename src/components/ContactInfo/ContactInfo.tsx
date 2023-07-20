@@ -9,15 +9,20 @@ export const ContactInfo = (props: FlexProps) => {
       align={'flex-start'}
       justify={'flex-start'}
       paddingBlock={'1.125em'}
-      paddingLeft={'1.75em'}
       gap={'1.5rem'}
       {...props}
     >
-      <Container>
+      <Container
+        width={'fit-content'}
+        margin={'0 auto'}
+      >
         <Heading variant={'contact'}>Contact Information</Heading>
         <Text marginTop={'0.5rem'}>Creativity is a gamble. Hit Jackpot!</Text>
       </Container>
-      <Container as={'address'}>
+      <Container
+        as={'address'}
+        paddingLeft={['0.625em', null, '1.75em']}
+      >
         <Flex align={'center'}>
           <Phone
             fill={'icon.dark'}

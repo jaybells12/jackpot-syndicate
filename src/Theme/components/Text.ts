@@ -1,8 +1,8 @@
-import { defineStyle, defineStyleConfig } from "@chakra-ui/react";
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
 const variants = {
   hero: defineStyle({
-    fontSize: '2.875rem',
+    fontSize: 'clamp(1.5rem, 3vw, 4rem)', //2.875rem,
     lineHeight: '1.4',
     color: 'text.light',
     fontWeight: '300',
@@ -22,4 +22,4 @@ const variants = {
 
 export default defineStyleConfig({
   variants,
-});
+})
