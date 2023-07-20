@@ -19,7 +19,6 @@ export const Features = (props: any) => {
         <FeaturesItem
           key={idx}
           item={item}
-          linkProps={{ paddingBlock: '3.375rem', paddingLeft: '13%' }}
         />
       ))}
     </Container>
