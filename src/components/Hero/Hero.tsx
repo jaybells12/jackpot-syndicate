@@ -15,7 +15,7 @@ export const Hero = (props: ContainerProps & AspectRatioProps) => {
       as={'section'}
       width={'full'}
       maxWidth={'unset'}
-      backgroundColor={'black'}
+      backgroundColor={'background.dark'}
       position={'relative'}
       overflow={'hidden'}
     >
