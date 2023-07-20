@@ -95,10 +95,7 @@ export const ContactForm = (props: FlexProps) => {
   return (
     <Flex
       direction={'column'}
-      // paddingTop={'5rem'}
-      padding={['2.25em 1em']}
-      // paddingRight={'2rem'}
-      // paddingBottom={'2.25rem'}
+      padding={['2.25em 1em', null, '2.25em 1.75em 2.25em 1em']}
       {...props}
     >
       <Flex

@@ -50,7 +50,7 @@ export const Contact = forwardRef<OffsetTopHandle, ContactProps>(
           flexDirection={['column', null, 'row']}
           bgColor={'form.primary'}
           borderRadius={'10px'}
-          gap={['0', null, '8rem']}
+          gap={['0', null, null, '8rem']}
           maxWidth={'min(85%, 1200px)'}
           minWidth={[null, null, '600px']}
         >
