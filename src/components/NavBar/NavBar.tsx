@@ -35,6 +35,7 @@ export const NavBar = (props: NavBarProps) => {
       top={'0'}
       padding={'1.2rem 1.5rem'}
       zIndex={'banner'}
+      // maxWidth={'100vw'}
     >
       <Flex
         justify={['center', null, 'space-between']}

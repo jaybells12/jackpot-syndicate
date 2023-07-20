@@ -17,12 +17,13 @@ export const Hero = (props: ContainerProps & AspectRatioProps) => {
       maxWidth={'unset'}
       backgroundColor={'black'}
       position={'relative'}
+      overflow={'hidden'}
     >
       <AspectRatio
         ratio={16.27 / 9}
         marginTop={['100px', null, null, null, '0']}
         width={['300%', null, '150%', null, '100%']}
-        // height={['300%', null, '150%', null, '100%']}
+        marginLeft={[-1, null, 0]}
       >
         <iframe
           src={
