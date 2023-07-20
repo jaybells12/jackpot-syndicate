@@ -95,12 +95,16 @@ export const ContactForm = (props: FlexProps) => {
   return (
     <Flex
       direction={'column'}
-      paddingTop={'5rem'}
-      paddingRight={'2rem'}
-      paddingBottom={'2.25rem'}
+      // paddingTop={'5rem'}
+      padding={['2.25em 1em']}
+      // paddingRight={'2rem'}
+      // paddingBottom={'2.25rem'}
       {...props}
     >
-      <Flex gap={'1.5rem'}>
+      <Flex
+        gap={'1.5rem'}
+        direction={['column', null, 'row']}
+      >
         <FormControl
           as={'fieldset'}
           isRequired
@@ -140,7 +144,8 @@ export const ContactForm = (props: FlexProps) => {
       </Flex>
       <Flex
         gap={'1.5rem'}
-        marginTop={'2rem'}
+        direction={['column', null, 'row']}
+        marginTop={['1.5rem', null, '2rem']}
       >
         <FormControl
           as={'fieldset'}
@@ -184,7 +189,7 @@ export const ContactForm = (props: FlexProps) => {
         isRequired
         isInvalid={isError.subject}
         id='subject'
-        marginTop={'2rem'}
+        marginTop={['1.5rem', null, '2rem']}
       >
         <FormLabel
           as={'legend'}
@@ -203,7 +208,7 @@ export const ContactForm = (props: FlexProps) => {
         isRequired
         isInvalid={isError.message}
         id='message'
-        marginTop={'2rem'}
+        marginTop={['1.5rem', null, '2rem']}
       >
         <FormLabel
           as={'legend'}
