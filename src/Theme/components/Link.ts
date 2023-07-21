@@ -3,13 +3,20 @@ import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 const variants = {
   feature: defineStyle({
     color: 'text.medium',
-    fontSize: '2.75rem', // 1.75rem on Figma
+    width: 'fit-content',
+    maxWidth: '86%',
+    padding: '0.25em',
+    borderRadius: '3xl',
+    fontSize: 'clamp(2rem, 3vw, 3rem)', // 2.75rem
     fontWeight: 'normal',
     lineHeight: '1.25',
     textDecoration: 'none',
     display: 'block',
     _hover: {
+      backgroundColor: '#0006',
       color: 'text.hover',
+      textShadow:
+        '1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black',
       textDecoration: 'none',
     },
   }),

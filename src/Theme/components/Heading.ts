@@ -2,7 +2,7 @@ import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
 const variants = {
   hero: defineStyle({
-    fontSize: '3.375rem',
+    fontSize: 'clamp(2rem, 3vw, 5rem)', //3.375rem
     fontWeight: '400',
     lineHeight: '1.2',
     color: 'text.light',
@@ -23,11 +23,10 @@ const variants = {
   service: defineStyle({
     width: 'fit-content',
     height: 'fit-content',
-    position: 'absolute',
-    inset: '0',
+    display: 'block',
     margin: '0 auto',
-    marginTop: '9%',
-    fontSize: '3.375rem',
+    marginBottom: ['3.5rem', '4.5rem', '5rem', '6rem', '6rem'],
+    fontSize: 'clamp(2.75rem, 10vw, 3.375rem)',
     fontWeight: '400',
     lineHeight: '1.2',
     color: 'text.light',

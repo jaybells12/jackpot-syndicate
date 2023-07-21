@@ -8,10 +8,10 @@ const variants = {
   service: definePartsStyle({
     container: {
       bgColor: 'unset',
-      maxWidth: '890px',
+      maxWidth: ['86%', null, null, '890px'],
       margin: '0 auto',
       position: 'relative',
-      marginTop: '-13%',
+      // marginTop: ['-6rem', '-8rem', '-12rem', '-16rem'],
       marginBottom: '3rem',
       overflow: 'hidden',
     },
@@ -20,13 +20,14 @@ const variants = {
       padding: '0',
     },
     footer: {
-      minHeight: '180px',
+      minHeight: [null, null, '180px'],
       display: 'flex',
+      flexDirection: ['column', null, 'row'],
       gap: '1.875rem',
       borderRadius: '0 0 10px 10px',
       borderInline: '1px solid rgba(255,255,255,0.2)',
       borderBottom: '1px solid rgba(255,255,255,0.2)',
-      padding: '1.125rem 7.125rem',
+      padding: ['1.125em', null, '1.125em 7.125em'],
     },
   }),
 }

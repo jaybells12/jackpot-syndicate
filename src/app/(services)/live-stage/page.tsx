@@ -1,23 +1,28 @@
 'use client'
 
-import { Box, Container, Heading } from '@chakra-ui/react'
-import backgroundImg from '@public/service_background_recording-studio.webp'
-import card01 from '@public/card_recording-studio-01.webp'
-import card02 from '@public/card_recording-studio-02.webp'
-import card03 from '@public/card_recording-studio-03.webp'
+import {
+  Box,
+  Container,
+  Heading,
+  useBreakpointValue,
+  useMediaQuery,
+} from '@chakra-ui/react'
+import backgroundImg from '@public/service_background_live-stage.webp'
+import card01 from '@public/card_live-stage-01.webp'
+import card02 from '@public/card_live-stage-02.webp'
+import card03 from '@public/card_live-stage-03.webp'
 // import { Image } from '@chakra-ui/next-js'
 import { TempImage } from '@components/TempImage'
 import { ServiceCard } from '@components/ServiceCard'
 
-const TITLE = 'Recording Studio & ISO Booth'
+const TITLE = 'Sound Stage'
 
 const DESCRIPTION =
-  'Use our 8 Channel Recording Studio to record drums, Track vocals in the ISO booth, Isolate Guitar and Track bass. We have almost eveyr plugin You’d ever want and need from Waves, Kontact Komplete, Sound Toys Fab Filter,  Omnisphere, and so much more. We have a ton of outboard, instruments and high class microphones to choose from as well.'
+  'Used for Interviews, table tops, still shoots, small audience sets, Audio Recording, Music videos, or Live broadcast and Recordings. A black theatrical curtain covers of the entire area perfect for sound deadening and black out. The lighting Grid spans across the entire area and into the kitchen. Yes, the ktichen is fully equipped. Sink Included.'
 
-const GEAR =
-  'Apollo 8P I/O\nProTools/Ableton/Logic\n2x Townsend L22 Sphere Mics\nFender Rhodes 73...\nPlease see our Gear List for an exhaustive list of toys.'
+const GEAR = 'Sound Stage: 35’x24’'
 
-const ALT = 'Computer desk'
+const ALT = 'Sound stage'
 
 export default function ServicePage() {
   return (
@@ -48,7 +53,7 @@ export default function ServicePage() {
           altText={ALT}
           titleLeft={'Description'}
           textLeft={DESCRIPTION}
-          titleRight={'Gear'}
+          titleRight={'Size'}
           textRight={GEAR}
         />
       </Box>
