@@ -1,6 +1,12 @@
 'use client'
 
-import { Container, Heading } from '@chakra-ui/react'
+import {
+  Box,
+  Container,
+  Heading,
+  useBreakpointValue,
+  useMediaQuery,
+} from '@chakra-ui/react'
 import backgroundImg from '@public/service_background_live-stage.webp'
 import card01 from '@public/card_live-stage-01.webp'
 import card02 from '@public/card_live-stage-02.webp'
@@ -25,26 +31,32 @@ export default function ServicePage() {
       minHeight={'100svh'}
       position={'relative'}
     >
-      <Heading
-        as={'h1'}
-        variant={'service'}
-      >
-        {TITLE}
-      </Heading>
       <TempImage
         priority
         src={backgroundImg}
         alt={'recording studio'}
         opacity={'20%'}
+        sx={{ objectFit: 'cover' }}
+        minHeight={['40svh', '50svh', '60svh', '70svh']}
       />
-      <ServiceCard
-        cardImg={card01}
-        altText={ALT}
-        titleLeft={'Description'}
-        textLeft={DESCRIPTION}
-        titleRight={'Size'}
-        textRight={GEAR}
-      />
+      <Box
+        marginTop={['-220px', '-268px', '-355px', '-445px', '-445px', '-450px']}
+      >
+        <Heading
+          as={'h1'}
+          variant={'service'}
+        >
+          {TITLE}
+        </Heading>
+        <ServiceCard
+          cardImg={card01}
+          altText={ALT}
+          titleLeft={'Description'}
+          textLeft={DESCRIPTION}
+          titleRight={'Size'}
+          textRight={GEAR}
+        />
+      </Box>
     </Container>
   )
 }
