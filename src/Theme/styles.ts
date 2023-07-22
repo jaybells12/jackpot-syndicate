@@ -3,6 +3,7 @@ export default {
     body: {
       backgroundColor: 'background.dark',
       marginRight: '0',
+      '.grecaptcha-badge': { visibility: 'hidden' },
     },
   },
 }
