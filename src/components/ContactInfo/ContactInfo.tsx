@@ -44,6 +44,8 @@ export const ContactInfo = (props: FlexProps) => {
           />
           <Link
             variant={'contact'}
+            target={'_blank'}
+            rel={'noopener noreferrer'}
             href={'mailto:contact@jackpotsyndicate.com'}
           >
             Contact@Jackpotsyndicate.com
