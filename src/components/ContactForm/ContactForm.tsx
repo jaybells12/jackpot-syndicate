@@ -348,7 +348,9 @@ export const ContactForm = (props: FlexProps) => {
         </FormErrorMessage>
       </FormControl>
       <Button
-        disabled={disabled}
+        // disabled={disabled}
+        isDisabled
+        _hover={{}}
         variant={'contact'}
         alignSelf={'flex-end'}
         marginTop={'2rem'}
