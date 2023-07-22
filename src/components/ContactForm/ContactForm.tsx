@@ -186,10 +186,13 @@ export const ContactForm = (props: FlexProps) => {
   }
 
   const onChange = async (token: string | null) => {
+    console.log('on change called')
     if (token) {
+      console.log('token is not null')
       const response = await verifyRecaptcha(token)
       if (response.success) {
         // Captcha Verified - Send Email - Render Success Message (Modal?)
+        console.log('verification succeeded')
         const result = await sendEmail({
           name: `${first} ${last}`,
           email,
