@@ -6,7 +6,7 @@ export type EmailData = {
   message: string
 }
 
-const CONTACT_EMAIL = 'jay.bells12@gmail.com'
+const CONTACT_EMAIL = 'contact@jackpotsyndicate.com' // 'jay.bells12@gmail.com'
 
 const sendEmail = async (data: EmailData) => {
   const result = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
