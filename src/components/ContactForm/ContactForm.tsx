@@ -58,7 +58,6 @@ function reducer(state: FormErrorState, action: FormErrorAction) {
   }
 }
 
-// Use reducer to dispatch form field errors. Currently no validation exists.
 export const ContactForm = (props: FlexProps) => {
   const [isError, dispatch] = useReducer(reducer, {
     first: false,
@@ -379,7 +378,6 @@ export const ContactForm = (props: FlexProps) => {
         ref={recapchaValue}
         size={'invisible'}
         sitekey={process.env.NEXT_PUBLIC_INVIS_RECAP_SITE as string}
-        // onChange={async (token) => await onChange(token)}
         onChange={onChange}
       />
     </Flex>
