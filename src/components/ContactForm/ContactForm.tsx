@@ -5,10 +5,21 @@ import {
   FormLabel,
   FormErrorMessage,
   Button,
+  Text,
   FlexProps,
 } from '@chakra-ui/react'
 import sendEmail from 'src/utils/sendEmail'
-import { ChangeEvent, MouseEvent, useReducer, useState } from 'react'
+import {
+  ChangeEvent,
+  MouseEvent,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from 'react'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { Link } from '@chakra-ui/next-js'
+import verifyRecaptcha from 'src/utils/verifyRecaptcha'
 
 function reducer(state: FormErrorState, action: FormErrorAction) {
   switch (action.type) {
@@ -63,6 +74,26 @@ export const ContactForm = (props: FlexProps) => {
   const [phone, setPhone] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+  const [disabled, setDisabled] = useState(false)
+  const recapchaValue = useRef<ReCAPTCHA>()
+
+  useEffect(() => {
+    if (submitted) {
+      const validated = isValid()
+      if (validated) {
+        console.log('validated')
+        // If form fields are valid, execute ReCaptcha
+        if (!recapchaValue.current) {
+          console.log('Recaptcha not loaded')
+          setSubmitted(false)
+          setDisabled(false)
+          return
+        }
+        recapchaValue.current.execute()
+      }
+    }
+  }, [submitted])
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const field = e.target.id
@@ -148,13 +179,33 @@ export const ContactForm = (props: FlexProps) => {
 
   const handleSubmit = (e: MouseEvent) => {
     e.preventDefault()
-    verifyRequiredFields()
-    const validated = isValid()
-    if (validated) {
-      sendEmail({ first, last, email, phone, subject, message })
-      //At this point, need to do something to hide the form and render a thank you message
+    setDisabled(true)
+    if (!submitted) {
+      verifyRequiredFields()
+      setSubmitted(true)
     }
-    //if this point is reached, attempt is invalid, render a modal explaining issue?
+  }
+
+  const onChange = async (token: string | null) => {
+    if (token) {
+      const response = await verifyRecaptcha(token)
+      if (response.success) {
+        // Captcha Verified - Send Email - Render Success Message (Modal?)
+        const result = await sendEmail({
+          name: `${first} ${last}`,
+          email,
+          phone,
+          subject,
+          message,
+        })
+        console.log(result)
+      } else {
+        // Captcha Unverified - Render Failure Message (Modal?)
+        console.log('Verification failed')
+      }
+    }
+    setDisabled(false)
+    setSubmitted(false)
   }
 
   return (
@@ -297,6 +348,7 @@ export const ContactForm = (props: FlexProps) => {
         </FormErrorMessage>
       </FormControl>
       <Button
+        disabled={disabled}
         variant={'contact'}
         alignSelf={'flex-end'}
         marginTop={'2rem'}
@@ -304,6 +356,31 @@ export const ContactForm = (props: FlexProps) => {
       >
         Send Message
       </Button>
+      <Text>
+        This site is protected by reCAPTCHA and the Google
+        <Link
+          href='https://policies.google.com/privacy'
+          color={'blue.500'}
+        >
+          {` Privacy Policy `}
+        </Link>{' '}
+        and
+        <Link
+          href='https://policies.google.com/terms'
+          color={'blue.500'}
+        >
+          {` Terms of Service `}
+        </Link>{' '}
+        apply.
+      </Text>
+      <ReCAPTCHA
+        //@ts-ignore Legacy Ref vs MutableRef
+        ref={recapchaValue}
+        size={'invisible'}
+        sitekey={process.env.NEXT_PUBLIC_INVIS_RECAP_SITE as string}
+        // onChange={async (token) => await onChange(token)}
+        onChange={onChange}
+      />
     </Flex>
   )
 }
