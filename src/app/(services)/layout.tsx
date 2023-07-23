@@ -10,11 +10,10 @@ export default function ServicesLayout({
   children: React.ReactNode
 }) {
   const footerRef = useRef<OffsetTopHandle>(null)
+
   return (
     <>
-      <header>
-        <NavBar footerRef={footerRef} />
-      </header>
+      <NavBar footerRef={footerRef} />
       <main>{children}</main>
       <Contact ref={footerRef} />
     </>

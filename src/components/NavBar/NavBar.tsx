@@ -5,8 +5,6 @@ import {
   Button,
   UnorderedList,
   ListItem,
-  useBreakpoint,
-  useBreakpointValue,
   Box,
 } from '@chakra-ui/react'
 import { Link } from '@chakra-ui/next-js'
@@ -14,29 +12,32 @@ import { navLinks } from 'src/data/staticData'
 import { Logo } from '@components/Logo'
 import { useScrollEasing } from 'src/hooks/useScrollIntoView'
 import { OffsetTopHandle } from '@components/Contact'
-import { RefObject } from 'react'
+import { RefObject, useRef } from 'react'
 
 type NavBarProps = {
   footerRef: RefObject<OffsetTopHandle>
 }
 
-export const NavBar = (props: NavBarProps) => {
+export const NavBar = ({ footerRef }: NavBarProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const breakpoint = useBreakpoint()
-  // const breakpointValue = useBreakpointValue()
-  console.log(breakpoint)
-  const { footerRef } = props // type this out
+  const navRef = useRef<HTMLElement>(null)
+
+  const HEADER_HEIGHT = 95
+
   return (
     <Container
-      as={'nav'}
-      height={'95px'}
+      as={'header'}
+      ref={navRef}
+      height={`${HEADER_HEIGHT}px`}
+      marginBottom={`-${HEADER_HEIGHT}px`}
       backgroundColor={'transparent'}
-      position={'fixed'}
+      position={'sticky'}
       top={'0'}
       padding={'1.2rem 1.5rem'}
       zIndex={'banner'}
     >
       <Flex
+        as={'nav'}
         justify={['center', null, 'space-between']}
         align={'center'}
         minWidth={'100%'}
