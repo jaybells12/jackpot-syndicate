@@ -14,6 +14,7 @@ import card03 from '@public/card_live-stage-03.webp'
 // import { Image } from '@chakra-ui/next-js'
 import { TempImage } from '@components/TempImage'
 import { ServiceCard } from '@components/ServiceCard'
+import { HEADER_HEIGHT } from '@components/NavBar'
 
 const TITLE = 'Sound Stage'
 
@@ -33,15 +34,16 @@ export default function ServicePage() {
     >
       <TempImage
         priority
+        // Position absolute allows 'Box' sibling to position itself relative to the header
+        position={'absolute'}
+        top={'0'}
         src={backgroundImg}
         alt={'recording studio'}
         opacity={'20%'}
         sx={{ objectFit: 'cover' }}
-        minHeight={['40svh', '50svh', '60svh', '70svh']}
+        minHeight={['50svh', '60svh', '70svh']}
       />
-      <Box
-        marginTop={['-220px', '-268px', '-355px', '-445px', '-445px', '-450px']}
-      >
+      <Box paddingTop={HEADER_HEIGHT + 25}>
         <Heading
           as={'h1'}
           variant={'service'}

@@ -8,6 +8,7 @@ export default {
   background: {
     dark: '#0d0d0d',
     light: '#ededed',
+    header: '#0d0d0dea',
   },
   button: {
     dark: {

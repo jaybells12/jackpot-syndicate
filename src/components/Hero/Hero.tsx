@@ -21,7 +21,6 @@ export const Hero = (props: ContainerProps & AspectRatioProps) => {
     >
       <AspectRatio
         ratio={16.27 / 9}
-        marginTop={['100px', null, null, null, '0']}
         width={['300%', null, '150%', null, '100%']}
         marginLeft={['-4px', null, '-3px', null, '0']}
       >
