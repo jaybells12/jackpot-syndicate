@@ -1,4 +1,4 @@
-export default {
+const styles = {
   global: {
     body: {
       backgroundColor: 'background.dark',
@@ -7,3 +7,5 @@ export default {
     },
   },
 }
+
+export default styles

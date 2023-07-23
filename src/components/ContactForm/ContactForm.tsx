@@ -8,10 +8,10 @@ import {
   Text,
   FlexProps,
 } from '@chakra-ui/react'
-import sendEmail from 'src/utils/sendEmail'
 import {
   ChangeEvent,
   MouseEvent,
+  useCallback,
   useEffect,
   useReducer,
   useRef,
@@ -20,6 +20,7 @@ import {
 import ReCAPTCHA from 'react-google-recaptcha'
 import { Link } from '@chakra-ui/next-js'
 import verifyRecaptcha from 'src/utils/verifyRecaptcha'
+import sendEmail from 'src/utils/sendEmail'
 
 function reducer(state: FormErrorState, action: FormErrorAction) {
   switch (action.type) {
@@ -77,6 +78,17 @@ export const ContactForm = (props: FlexProps) => {
   const [isDisabled, setIsDisabled] = useState(false)
   const recapchaValue = useRef<ReCAPTCHA>()
 
+  // If an error property is true, then return false
+  const isValid = useCallback(() => {
+    return !(
+      isError.first ||
+      isError.last ||
+      isError.email ||
+      isError.subject ||
+      isError.message
+    )
+  }, [isError])
+
   useEffect(() => {
     if (isDisabled) {
       // Check state for validity
@@ -97,7 +109,7 @@ export const ContactForm = (props: FlexProps) => {
         return
       }
     }
-  }, [isDisabled])
+  }, [isDisabled, isValid])
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const field = e.target.id
@@ -150,17 +162,6 @@ export const ContactForm = (props: FlexProps) => {
       default:
         console.log('This should never happen')
     }
-  }
-
-  // If an error property is true, then return false
-  const isValid = () => {
-    return !(
-      isError.first ||
-      isError.last ||
-      isError.email ||
-      isError.subject ||
-      isError.message
-    )
   }
 
   const verifyRequiredFields = () => {

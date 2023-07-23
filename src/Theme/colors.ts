@@ -1,4 +1,4 @@
-export default {
+const colors = {
   text: {
     dark: '#1a1a1a',
     medium: '#909090',
@@ -31,6 +31,8 @@ export default {
     trim: '#1a1a1a',
   },
 }
+
+export default colors
 
 /**
  * Colors, Dark to light

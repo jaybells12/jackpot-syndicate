@@ -1,5 +1,3 @@
-'use server'
-
 export type EmailData = {
   name: string
   email: string
@@ -8,9 +6,9 @@ export type EmailData = {
   message: string
 }
 
-async function sendEmail(data: EmailData) {
+export const sendEmail = async (data: EmailData) => {
   const result = await fetch(
-    `https://formsubmit.co/ajax/${process.env.CONTACT_EMAIL}`,
+    `https://formsubmit.co/ajax/${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`,
     {
       method: 'POST',
       headers: {
