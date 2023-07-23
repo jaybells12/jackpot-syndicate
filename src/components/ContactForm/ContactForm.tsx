@@ -79,10 +79,6 @@ export const ContactForm = (props: FlexProps) => {
   const preventRapidRef = useRef(false)
 
   useEffect(() => {
-    if (preventRapidRef.current) {
-      return
-    }
-
     if (submitted) {
       const validated = isValid()
       if (validated) {
@@ -95,6 +91,10 @@ export const ContactForm = (props: FlexProps) => {
           return
         }
         recapchaValue.current.execute()
+      } else {
+        preventRapidRef.current = false
+        setSubmitted(false)
+        setDisabled(false)
       }
     }
   }, [submitted])
@@ -189,7 +189,6 @@ export const ContactForm = (props: FlexProps) => {
     }
 
     preventRapidRef.current = true
-
     setDisabled(true)
 
     if (!submitted) {
