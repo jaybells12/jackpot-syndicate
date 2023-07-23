@@ -21,7 +21,7 @@ export default function ServicePage() {
   return (
     <Container
       as={'section'}
-      minHeight={'100svh'}
+      minHeight={'100vh'}
       position={'relative'}
     >
       <TempImage
