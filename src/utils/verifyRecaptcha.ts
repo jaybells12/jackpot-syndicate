@@ -1,6 +1,6 @@
 'use server'
 // Server Action: Verify ReCaptcha Token
-export async function verifyRecaptcha(token: string) {
+async function verifyRecaptcha(token: string) {
   const verifyResult = await fetch(
     'https://www.google.com/recaptcha/api/siteverify',
     {
