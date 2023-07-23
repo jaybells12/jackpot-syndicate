@@ -73,31 +73,31 @@ export const ContactForm = (props: FlexProps) => {
   const [phone, setPhone] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-  const [disabled, setDisabled] = useState(false)
+  // const [submitted, setSubmitted] = useState(false)
+  const [isDisabled, setIsDisabled] = useState(false)
   const recapchaValue = useRef<ReCAPTCHA>()
-  const preventRapidRef = useRef(false)
 
   useEffect(() => {
-    if (submitted) {
-      const validated = isValid()
-      if (validated) {
-        // If form fields are valid, execute ReCaptcha
+    if (isDisabled) {
+      // Check state for validity
+      if (isValid()) {
         if (!recapchaValue.current) {
-          console.log('Recaptcha not loaded')
-          preventRapidRef.current = false
-          setSubmitted(false)
-          setDisabled(false)
+          // ReCaptcha is not loaded
+          // Render Failure Modal
+          setIsDisabled(false)
           return
         }
+        // Submission logic continues at ReCaptcha OnChange handler
         recapchaValue.current.execute()
+        return
       } else {
-        preventRapidRef.current = false
-        setSubmitted(false)
-        setDisabled(false)
+        // Form Field validation failed
+        // Render Failure Modal ?
+        setIsDisabled(false)
+        return
       }
     }
-  }, [submitted])
+  }, [isDisabled])
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const field = e.target.id
@@ -183,25 +183,19 @@ export const ContactForm = (props: FlexProps) => {
 
   const handleSubmit = (e: MouseEvent) => {
     e.preventDefault()
-
-    if (preventRapidRef.current) {
-      return
-    }
-
-    preventRapidRef.current = true
-    setDisabled(true)
-
-    if (!submitted) {
-      verifyRequiredFields()
-      setSubmitted(true)
-    }
+    // Validate Form Fields
+    verifyRequiredFields()
+    // When component rerenders, submission logic continues when isDisabled is true
+    setIsDisabled(true)
   }
 
   const onChange = async (token: string | null) => {
     if (token) {
       const response = await verifyRecaptcha(token)
-      if (response.success) {
-        // Captcha Verified - Send Email - Render Success Message (Modal?)
+      console.log('Verify Response')
+      console.log(response)
+      if (Boolean(response.success)) {
+        // Captcha Verified, Send Email
         const result = await sendEmail({
           name: `${first} ${last}`,
           email,
@@ -209,21 +203,25 @@ export const ContactForm = (props: FlexProps) => {
           subject,
           message,
         })
-        if (result.success) {
+        if (Boolean(result.success)) {
           // Submit Form Succeeded
+          // Render Success Modal
           console.log('Form submitted successfully')
+          console.log(result)
         } else {
           // Submit Form Failed
+          // Render Failure / Retry modal
+          setIsDisabled(false)
           console.log('Form submission failed')
+          console.log(result)
         }
       } else {
-        // Captcha Unverified - Render Failure Message (Modal?)
+        // Captcha Unverified
+        // Render Failure Modal
+        setIsDisabled(false)
         console.log('Verification failed')
       }
     }
-    preventRapidRef.current = false
-    setDisabled(false)
-    setSubmitted(false)
   }
 
   return (
@@ -366,8 +364,8 @@ export const ContactForm = (props: FlexProps) => {
         </FormErrorMessage>
       </FormControl>
       <Button
-        isDisabled={disabled}
-        _hover={disabled ? {} : undefined}
+        isDisabled={isDisabled}
+        _hover={isDisabled ? {} : undefined}
         variant={'contact'}
         alignSelf={'flex-end'}
         marginTop={'2rem'}
