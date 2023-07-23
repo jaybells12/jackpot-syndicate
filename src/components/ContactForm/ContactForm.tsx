@@ -76,15 +76,20 @@ export const ContactForm = (props: FlexProps) => {
   const [submitted, setSubmitted] = useState(false)
   const [disabled, setDisabled] = useState(false)
   const recapchaValue = useRef<ReCAPTCHA>()
+  const preventRapidRef = useRef(false)
 
   useEffect(() => {
+    if (preventRapidRef.current) {
+      return
+    }
+
     if (submitted) {
       const validated = isValid()
       if (validated) {
-        console.log('validated')
         // If form fields are valid, execute ReCaptcha
         if (!recapchaValue.current) {
           console.log('Recaptcha not loaded')
+          preventRapidRef.current = false
           setSubmitted(false)
           setDisabled(false)
           return
@@ -178,7 +183,15 @@ export const ContactForm = (props: FlexProps) => {
 
   const handleSubmit = (e: MouseEvent) => {
     e.preventDefault()
+
+    if (preventRapidRef.current) {
+      return
+    }
+
+    preventRapidRef.current = true
+
     setDisabled(true)
+
     if (!submitted) {
       verifyRequiredFields()
       setSubmitted(true)
@@ -186,13 +199,10 @@ export const ContactForm = (props: FlexProps) => {
   }
 
   const onChange = async (token: string | null) => {
-    console.log('on change called')
     if (token) {
-      console.log('token is not null')
       const response = await verifyRecaptcha(token)
       if (response.success) {
         // Captcha Verified - Send Email - Render Success Message (Modal?)
-        console.log('verification succeeded')
         const result = await sendEmail({
           name: `${first} ${last}`,
           email,
@@ -200,12 +210,12 @@ export const ContactForm = (props: FlexProps) => {
           subject,
           message,
         })
-        console.log(result)
       } else {
         // Captcha Unverified - Render Failure Message (Modal?)
         console.log('Verification failed')
       }
     }
+    preventRapidRef.current = false
     setDisabled(false)
     setSubmitted(false)
   }
