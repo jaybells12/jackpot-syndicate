@@ -17,12 +17,11 @@ import { RefObject, useRef } from 'react'
 type NavBarProps = {
   footerRef: RefObject<OffsetTopHandle>
 }
+export const HEADER_HEIGHT = 95
 
 export const NavBar = ({ footerRef }: NavBarProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const navRef = useRef<HTMLElement>(null)
-
-  const HEADER_HEIGHT = 95
 
   return (
     <Container
@@ -31,8 +30,8 @@ export const NavBar = ({ footerRef }: NavBarProps) => {
       height={`${HEADER_HEIGHT}px`}
       marginBottom={`-${HEADER_HEIGHT}px`}
       backgroundColor={'transparent'}
-      // position={'sticky'}
-      // top={'0'}
+      position={'sticky'}
+      top={'0'}
       padding={'1.2rem 1.5rem'}
       zIndex={'banner'}
     >
