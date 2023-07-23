@@ -29,7 +29,10 @@ export const ServiceCard = ({
   textLeft,
 }: ServiceCardProps) => {
   return (
-    <Card variant={'service'}>
+    <Card
+      variant={'service'}
+      bgColor={'background.dark'}
+    >
       <CardBody>
         <TempImage
           src={cardImg}

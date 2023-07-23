@@ -25,7 +25,7 @@ const variants = {
     height: 'fit-content',
     display: 'block',
     margin: '0 auto',
-    marginBottom: ['2.5rem', '3.5rem', '4rem', '5rem'],
+    marginBottom: ['5rem', null, '6rem', null, '7rem'],
     fontSize: 'clamp(2.75rem, 10vw, 3.375rem)',
     fontWeight: '400',
     lineHeight: '1.2',

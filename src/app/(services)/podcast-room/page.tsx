@@ -35,9 +35,10 @@ export default function ServicePage() {
         alt={'recording studio'}
         opacity={'20%'}
         sx={{ objectFit: 'cover' }}
-        minHeight={['50svh', '60svh', '70svh']}
+        // @ts-ignore Chakra-Ui accepts array for responsive sizing
+        height={[300, 350, 450, 550, 575]}
       />
-      <Box paddingTop={HEADER_HEIGHT + 25}>
+      <Box paddingTop={['5rem', null, '6rem', null, '7rem']}>
         <Heading
           as={'h1'}
           variant={'service'}
