@@ -18,6 +18,12 @@ const variants = {
     lineHeight: '1.125rem',
     color: 'text.light',
   }),
+  fineprint: defineStyle({
+    textAlign: 'center',
+    marginTop: '1em',
+    fontSize: '0.65rem',
+    fontWeight: '200',
+  }),
 }
 
 export default defineStyleConfig({

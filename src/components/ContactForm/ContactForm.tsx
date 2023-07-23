@@ -359,7 +359,7 @@ export const ContactForm = (props: FlexProps) => {
       >
         Send Message
       </Button>
-      <Text>
+      <Text variant={'fineprint'}>
         This site is protected by reCAPTCHA and the Google
         <Link
           href='https://policies.google.com/privacy'
