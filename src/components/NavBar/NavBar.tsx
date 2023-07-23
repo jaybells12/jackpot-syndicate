@@ -31,8 +31,8 @@ export const NavBar = ({ footerRef }: NavBarProps) => {
       height={`${HEADER_HEIGHT}px`}
       marginBottom={`-${HEADER_HEIGHT}px`}
       backgroundColor={'transparent'}
-      position={'sticky'}
-      top={'0'}
+      // position={'sticky'}
+      // top={'0'}
       padding={'1.2rem 1.5rem'}
       zIndex={'banner'}
     >

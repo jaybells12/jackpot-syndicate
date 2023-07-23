@@ -21,7 +21,7 @@ export default function ServicePage() {
   return (
     <Container
       as={'section'}
-      minHeight={'100vh'}
+      minHeight={'100svh'}
       position={'relative'}
     >
       <TempImage
@@ -33,7 +33,7 @@ export default function ServicePage() {
         minHeight={['40svh', '50svh', '60svh', '70svh']}
       />
       <Box
-        marginTop={['-220px', '-268px', '-355px', '-445px', '-445px', '-450px']}
+        marginTop={['-125px', '-268px', '-355px', '-445px', '-445px', '-450px']}
       >
         <Heading
           as={'h1'}
