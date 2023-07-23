@@ -8,7 +8,7 @@ export type EmailData = {
   message: string
 }
 
-export async function sendEmail(data: EmailData) {
+const sendEmail = async (data: EmailData) => {
   const result = await fetch(
     `https://formsubmit.co/ajax/${process.env.CONTACT_EMAIL}`,
     {

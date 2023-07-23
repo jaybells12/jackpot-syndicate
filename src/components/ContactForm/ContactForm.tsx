@@ -209,6 +209,13 @@ export const ContactForm = (props: FlexProps) => {
           subject,
           message,
         })
+        if (result.success) {
+          // Submit Form Succeeded
+          console.log('Form submitted successfully')
+        } else {
+          // Submit Form Failed
+          console.log('Form submission failed')
+        }
       } else {
         // Captcha Unverified - Render Failure Message (Modal?)
         console.log('Verification failed')
