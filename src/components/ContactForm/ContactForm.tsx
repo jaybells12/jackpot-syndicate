@@ -54,6 +54,11 @@ function reducer(state: FormErrorState, action: FormErrorAction) {
         ...state,
         message: action.payload,
       }
+    case 'address':
+      return {
+        ...state,
+        message: action.payload,
+      }
     default:
       throw Error('Unknown Form Action: ', action.type)
   }
@@ -67,6 +72,7 @@ export const ContactForm = (props: FlexProps) => {
     phone: false,
     subject: false,
     message: false,
+    address: false,
   })
   const [first, setFirst] = useState('')
   const [last, setLast] = useState('')
@@ -74,7 +80,8 @@ export const ContactForm = (props: FlexProps) => {
   const [phone, setPhone] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
-  // const [submitted, setSubmitted] = useState(false)
+  // Address is a honeypot field
+  const [address, setaddress] = useState('')
   const [isDisabled, setIsDisabled] = useState(false)
   const recapchaValue = useRef<ReCAPTCHA>()
 
@@ -84,12 +91,18 @@ export const ContactForm = (props: FlexProps) => {
       isError.first ||
       isError.last ||
       isError.email ||
+      isError.phone ||
       isError.subject ||
       isError.message
     )
   }, [isError])
 
   useEffect(() => {
+    if (address) {
+      // Honey pot field has value
+      // Render Fake Success
+      return
+    }
     if (isDisabled) {
       // Check state for validity
       if (isValid()) {
@@ -174,6 +187,9 @@ export const ContactForm = (props: FlexProps) => {
     email
       ? dispatch({ type: 'email', payload: false })
       : dispatch({ type: 'email', payload: true })
+    phone
+      ? dispatch({ type: 'phone', payload: false })
+      : dispatch({ type: 'phone', payload: true })
     subject
       ? dispatch({ type: 'subject', payload: false })
       : dispatch({ type: 'subject', payload: true })
@@ -243,7 +259,7 @@ export const ContactForm = (props: FlexProps) => {
         >
           <FormLabel
             as={'legend'}
-            requiredIndicator={<></>}
+            requiredIndicator={<>*</>}
           >
             First Name
           </FormLabel>
@@ -263,7 +279,7 @@ export const ContactForm = (props: FlexProps) => {
         >
           <FormLabel
             as={'legend'}
-            requiredIndicator={<></>}
+            requiredIndicator={<>*</>}
           >
             Last Name
           </FormLabel>
@@ -289,7 +305,7 @@ export const ContactForm = (props: FlexProps) => {
         >
           <FormLabel
             as={'legend'}
-            requiredIndicator={<></>}
+            requiredIndicator={<>*</>}
           >
             Email
           </FormLabel>
@@ -309,7 +325,7 @@ export const ContactForm = (props: FlexProps) => {
         >
           <FormLabel
             as={'legend'}
-            requiredIndicator={<></>}
+            requiredIndicator={<>*</>}
           >
             Phone Number
           </FormLabel>
@@ -331,7 +347,7 @@ export const ContactForm = (props: FlexProps) => {
       >
         <FormLabel
           as={'legend'}
-          requiredIndicator={<></>}
+          requiredIndicator={<>*</>}
         >
           Subject
         </FormLabel>
@@ -352,7 +368,7 @@ export const ContactForm = (props: FlexProps) => {
       >
         <FormLabel
           as={'legend'}
-          requiredIndicator={<></>}
+          requiredIndicator={<>*</>}
         >
           Message
         </FormLabel>
@@ -363,6 +379,23 @@ export const ContactForm = (props: FlexProps) => {
         <FormErrorMessage position={'absolute'}>
           Message is required.
         </FormErrorMessage>
+      </FormControl>
+      <FormControl
+        as={'fieldset'}
+        id={'address'}
+        name={'address'}
+        opacity={0}
+        position={'absolute'}
+        inset={0}
+        height={0}
+        width={0}
+        zIndex={-2}
+        tabIndex={-1}
+      >
+        <Input
+          value={address}
+          onChange={handleInput}
+        />
       </FormControl>
       <Button
         isDisabled={isDisabled}
