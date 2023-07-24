@@ -267,7 +267,10 @@ export const ContactForm = (props: FlexProps) => {
             value={first}
             onChange={handleInput}
           />
-          <FormErrorMessage position={'absolute'}>
+          <FormErrorMessage
+            position={'absolute'}
+            top={'5'}
+          >
             First name is required.
           </FormErrorMessage>
         </FormControl>
@@ -287,7 +290,10 @@ export const ContactForm = (props: FlexProps) => {
             value={last}
             onChange={handleInput}
           />
-          <FormErrorMessage position={'absolute'}>
+          <FormErrorMessage
+            position={'absolute'}
+            top={'5'}
+          >
             Last name is required.
           </FormErrorMessage>
         </FormControl>
@@ -313,7 +319,10 @@ export const ContactForm = (props: FlexProps) => {
             value={email}
             onChange={handleInput}
           />
-          <FormErrorMessage position={'absolute'}>
+          <FormErrorMessage
+            position={'absolute'}
+            top={'5'}
+          >
             Email is required.
           </FormErrorMessage>
         </FormControl>
@@ -333,7 +342,10 @@ export const ContactForm = (props: FlexProps) => {
             value={phone}
             onChange={handleInput}
           />
-          <FormErrorMessage position={'absolute'}>
+          <FormErrorMessage
+            position={'absolute'}
+            top={'5'}
+          >
             Phone number is required.
           </FormErrorMessage>
         </FormControl>
@@ -355,7 +367,10 @@ export const ContactForm = (props: FlexProps) => {
           value={subject}
           onChange={handleInput}
         />
-        <FormErrorMessage position={'absolute'}>
+        <FormErrorMessage
+          position={'absolute'}
+          top={'5'}
+        >
           Subject is required.
         </FormErrorMessage>
       </FormControl>
@@ -376,7 +391,10 @@ export const ContactForm = (props: FlexProps) => {
           value={message}
           onChange={handleInput}
         />
-        <FormErrorMessage position={'absolute'}>
+        <FormErrorMessage
+          position={'absolute'}
+          top={'5'}
+        >
           Message is required.
         </FormErrorMessage>
       </FormControl>
