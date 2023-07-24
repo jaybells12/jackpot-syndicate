@@ -237,7 +237,7 @@ export const ContactForm = (props: FlexProps) => {
         <FormControl
           as={'fieldset'}
           isRequired
-          isDisabled={disabled}
+          isDisabled={isDisabled}
           isInvalid={isError.first}
           id='first'
         >
@@ -261,7 +261,7 @@ export const ContactForm = (props: FlexProps) => {
         <FormControl
           as={'fieldset'}
           isRequired
-          isDisabled={disabled}
+          isDisabled={isDisabled}
           isInvalid={isError.last}
           id='last'
         >
@@ -291,7 +291,7 @@ export const ContactForm = (props: FlexProps) => {
         <FormControl
           as={'fieldset'}
           isRequired
-          isDisabled={disabled}
+          isDisabled={isDisabled}
           isInvalid={isError.email}
           id='email'
         >
@@ -315,7 +315,7 @@ export const ContactForm = (props: FlexProps) => {
         <FormControl
           as={'fieldset'}
           isRequired
-          isDisabled={disabled}
+          isDisabled={isDisabled}
           isInvalid={isError.phone}
           id='phone'
         >
@@ -340,7 +340,7 @@ export const ContactForm = (props: FlexProps) => {
       <FormControl
         as={'fieldset'}
         isRequired
-        isDisabled={disabled}
+        isDisabled={isDisabled}
         isInvalid={isError.subject}
         id='subject'
         marginTop={['1.5rem', null, '2rem']}
@@ -365,7 +365,7 @@ export const ContactForm = (props: FlexProps) => {
       <FormControl
         as={'fieldset'}
         isRequired
-        isDisabled={disabled}
+        isDisabled={isDisabled}
         isInvalid={isError.message}
         id='message'
         marginTop={['1.5rem', null, '2rem']}
