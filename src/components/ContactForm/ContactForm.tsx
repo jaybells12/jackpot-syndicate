@@ -8,10 +8,10 @@ import {
   Text,
   FlexProps,
 } from '@chakra-ui/react'
-import sendEmail from 'src/utils/sendEmail'
 import {
   ChangeEvent,
   MouseEvent,
+  useCallback,
   useEffect,
   useReducer,
   useRef,
@@ -20,6 +20,7 @@ import {
 import ReCAPTCHA from 'react-google-recaptcha'
 import { Link } from '@chakra-ui/next-js'
 import verifyRecaptcha from 'src/utils/verifyRecaptcha'
+import sendEmail from 'src/utils/sendEmail'
 
 function reducer(state: FormErrorState, action: FormErrorAction) {
   switch (action.type) {
@@ -53,6 +54,11 @@ function reducer(state: FormErrorState, action: FormErrorAction) {
         ...state,
         message: action.payload,
       }
+    case 'address':
+      return {
+        ...state,
+        message: action.payload,
+      }
     default:
       throw Error('Unknown Form Action: ', action.type)
   }
@@ -66,6 +72,7 @@ export const ContactForm = (props: FlexProps) => {
     phone: false,
     subject: false,
     message: false,
+    address: false,
   })
   const [first, setFirst] = useState('')
   const [last, setLast] = useState('')
@@ -73,24 +80,49 @@ export const ContactForm = (props: FlexProps) => {
   const [phone, setPhone] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-  const [disabled, setDisabled] = useState(false)
+  // Address is a honeypot field
+  const [address, setaddress] = useState('')
+  const [isDisabled, setIsDisabled] = useState(false)
   const recapchaValue = useRef<ReCAPTCHA>()
 
+  // If an error property is true, then return false
+  const isValid = useCallback(() => {
+    return !(
+      isError.first ||
+      isError.last ||
+      isError.email ||
+      isError.phone ||
+      isError.subject ||
+      isError.message
+    )
+  }, [isError])
+
   useEffect(() => {
-    if (submitted) {
-      const validated = isValid()
-      if (validated) {
-        // If form fields are valid, execute ReCaptcha
+    if (address) {
+      // Honey pot field has value
+      // Render Fake Success
+      return
+    }
+    if (isDisabled) {
+      // Check state for validity
+      if (isValid()) {
         if (!recapchaValue.current) {
-          setSubmitted(false)
-          setDisabled(false)
+          // ReCaptcha is not loaded
+          // Render Failure Modal
+          setIsDisabled(false)
           return
         }
+        // Submission logic continues at ReCaptcha OnChange handler
         recapchaValue.current.execute()
+        return
+      } else {
+        // Form Field validation failed
+        // Render Failure Modal ?
+        setIsDisabled(false)
+        return
       }
     }
-  }, [submitted])
+  }, [isDisabled, isValid])
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const field = e.target.id
@@ -145,17 +177,6 @@ export const ContactForm = (props: FlexProps) => {
     }
   }
 
-  // If an error property is true, then return false
-  const isValid = () => {
-    return !(
-      isError.first ||
-      isError.last ||
-      isError.email ||
-      isError.subject ||
-      isError.message
-    )
-  }
-
   const verifyRequiredFields = () => {
     first
       ? dispatch({ type: 'first', payload: false })
@@ -166,6 +187,9 @@ export const ContactForm = (props: FlexProps) => {
     email
       ? dispatch({ type: 'email', payload: false })
       : dispatch({ type: 'email', payload: true })
+    phone
+      ? dispatch({ type: 'phone', payload: false })
+      : dispatch({ type: 'phone', payload: true })
     subject
       ? dispatch({ type: 'subject', payload: false })
       : dispatch({ type: 'subject', payload: true })
@@ -176,11 +200,10 @@ export const ContactForm = (props: FlexProps) => {
 
   const handleSubmit = (e: MouseEvent) => {
     e.preventDefault()
-    setDisabled(true)
-    if (!submitted) {
-      verifyRequiredFields()
-      setSubmitted(true)
-    }
+    // Validate Form Fields
+    verifyRequiredFields()
+    // When component rerenders, submission logic continues when isDisabled is true
+    setIsDisabled(true)
   }
 
   const onChange = async (token: string | null) => {
@@ -199,8 +222,6 @@ export const ContactForm = (props: FlexProps) => {
         // Captcha Unverified - Render Failure Message (Modal?)
       }
     }
-    setDisabled(false)
-    setSubmitted(false)
   }
 
   return (
@@ -222,7 +243,7 @@ export const ContactForm = (props: FlexProps) => {
         >
           <FormLabel
             as={'legend'}
-            requiredIndicator={<></>}
+            requiredIndicator={<>*</>}
           >
             First Name
           </FormLabel>
@@ -230,7 +251,10 @@ export const ContactForm = (props: FlexProps) => {
             value={first}
             onChange={handleInput}
           />
-          <FormErrorMessage position={'absolute'}>
+          <FormErrorMessage
+            position={'absolute'}
+            top={'5'}
+          >
             First name is required.
           </FormErrorMessage>
         </FormControl>
@@ -243,7 +267,7 @@ export const ContactForm = (props: FlexProps) => {
         >
           <FormLabel
             as={'legend'}
-            requiredIndicator={<></>}
+            requiredIndicator={<>*</>}
           >
             Last Name
           </FormLabel>
@@ -251,7 +275,10 @@ export const ContactForm = (props: FlexProps) => {
             value={last}
             onChange={handleInput}
           />
-          <FormErrorMessage position={'absolute'}>
+          <FormErrorMessage
+            position={'absolute'}
+            top={'5'}
+          >
             Last name is required.
           </FormErrorMessage>
         </FormControl>
@@ -270,7 +297,7 @@ export const ContactForm = (props: FlexProps) => {
         >
           <FormLabel
             as={'legend'}
-            requiredIndicator={<></>}
+            requiredIndicator={<>*</>}
           >
             Email
           </FormLabel>
@@ -278,7 +305,10 @@ export const ContactForm = (props: FlexProps) => {
             value={email}
             onChange={handleInput}
           />
-          <FormErrorMessage position={'absolute'}>
+          <FormErrorMessage
+            position={'absolute'}
+            top={'5'}
+          >
             Email is required.
           </FormErrorMessage>
         </FormControl>
@@ -291,7 +321,7 @@ export const ContactForm = (props: FlexProps) => {
         >
           <FormLabel
             as={'legend'}
-            requiredIndicator={<></>}
+            requiredIndicator={<>*</>}
           >
             Phone Number
           </FormLabel>
@@ -299,7 +329,10 @@ export const ContactForm = (props: FlexProps) => {
             value={phone}
             onChange={handleInput}
           />
-          <FormErrorMessage position={'absolute'}>
+          <FormErrorMessage
+            position={'absolute'}
+            top={'5'}
+          >
             Phone number is required.
           </FormErrorMessage>
         </FormControl>
@@ -314,7 +347,7 @@ export const ContactForm = (props: FlexProps) => {
       >
         <FormLabel
           as={'legend'}
-          requiredIndicator={<></>}
+          requiredIndicator={<>*</>}
         >
           Subject
         </FormLabel>
@@ -322,7 +355,10 @@ export const ContactForm = (props: FlexProps) => {
           value={subject}
           onChange={handleInput}
         />
-        <FormErrorMessage position={'absolute'}>
+        <FormErrorMessage
+          position={'absolute'}
+          top={'5'}
+        >
           Subject is required.
         </FormErrorMessage>
       </FormControl>
@@ -336,7 +372,7 @@ export const ContactForm = (props: FlexProps) => {
       >
         <FormLabel
           as={'legend'}
-          requiredIndicator={<></>}
+          requiredIndicator={<>*</>}
         >
           Message
         </FormLabel>
@@ -344,13 +380,33 @@ export const ContactForm = (props: FlexProps) => {
           value={message}
           onChange={handleInput}
         />
-        <FormErrorMessage position={'absolute'}>
+        <FormErrorMessage
+          position={'absolute'}
+          top={'5'}
+        >
           Message is required.
         </FormErrorMessage>
       </FormControl>
+      <FormControl
+        as={'fieldset'}
+        id={'address'}
+        name={'address'}
+        opacity={0}
+        position={'absolute'}
+        inset={0}
+        height={0}
+        width={0}
+        zIndex={-2}
+        tabIndex={-1}
+      >
+        <Input
+          value={address}
+          onChange={handleInput}
+        />
+      </FormControl>
       <Button
-        isDisabled={disabled}
-        _hover={disabled ? {} : undefined}
+        isDisabled={isDisabled}
+        _hover={isDisabled ? {} : undefined}
         variant={'contact'}
         alignSelf={'flex-end'}
         marginTop={'2rem'}
