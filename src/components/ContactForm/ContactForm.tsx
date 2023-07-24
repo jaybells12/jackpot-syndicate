@@ -81,10 +81,8 @@ export const ContactForm = (props: FlexProps) => {
     if (submitted) {
       const validated = isValid()
       if (validated) {
-        console.log('validated')
         // If form fields are valid, execute ReCaptcha
         if (!recapchaValue.current) {
-          console.log('Recaptcha not loaded')
           setSubmitted(false)
           setDisabled(false)
           return
@@ -186,13 +184,10 @@ export const ContactForm = (props: FlexProps) => {
   }
 
   const onChange = async (token: string | null) => {
-    console.log('on change called')
     if (token) {
-      console.log('token is not null')
       const response = await verifyRecaptcha(token)
       if (response.success) {
         // Captcha Verified - Send Email - Render Success Message (Modal?)
-        console.log('verification succeeded')
         const result = await sendEmail({
           name: `${first} ${last}`,
           email,
@@ -200,10 +195,8 @@ export const ContactForm = (props: FlexProps) => {
           subject,
           message,
         })
-        console.log(result)
       } else {
         // Captcha Unverified - Render Failure Message (Modal?)
-        console.log('Verification failed')
       }
     }
     setDisabled(false)
