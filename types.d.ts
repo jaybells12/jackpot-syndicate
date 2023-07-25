@@ -5,10 +5,10 @@ type FormErrorState = {
   phone: boolean
   subject: boolean
   message: boolean
-  address: boolean
+  // address: boolean
 }
 
 type FormErrorAction = {
-  type: 'first' | 'last' | 'email' | 'phone' | 'subject' | 'message' | 'address'
+  type: 'first' | 'last' | 'email' | 'phone' | 'subject' | 'message' // | 'address'
   payload: boolean
 }

@@ -56,11 +56,11 @@ function reducer(state: FormErrorState, action: FormErrorAction) {
         ...state,
         message: action.payload,
       }
-    case 'address':
-      return {
-        ...state,
-        message: action.payload,
-      }
+    // case 'address':
+    //   return {
+    //     ...state,
+    //     message: action.payload,
+    //   }
     default:
       throw Error('Unknown Form Action: ', action.type)
   }
@@ -74,16 +74,16 @@ export const ContactForm = (props: FlexProps) => {
     phone: false,
     subject: false,
     message: false,
-    address: false,
+    // address: false,
   })
+  // // Address is a honeypot field
+  // const [address, setaddress] = useState('')
   const [first, setFirst] = useState('')
   const [last, setLast] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
-  // Address is a honeypot field
-  const [address, setaddress] = useState('')
   const [result, setResult] = useState(false)
   const [showResult, setShowResult] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
@@ -106,11 +106,13 @@ export const ContactForm = (props: FlexProps) => {
   }, [isError])
 
   useEffect(() => {
-    if (address) {
-      // Honey pot field has value
-      // Render Fake Success
-      return
-    }
+    // if (address) {
+    //   // Honey pot field has value
+    //   // Render Fake Success
+    //   setResult(true)
+    //   setShowResult(true)
+    //   return
+    // }
     if (isDisabled) {
       // Check state for validity
       if (isValid()) {
@@ -131,7 +133,7 @@ export const ContactForm = (props: FlexProps) => {
         return
       }
     }
-  }, [isDisabled, isValid, address])
+  }, [isDisabled, isValid]) // address
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const field = e.target.id
@@ -329,7 +331,7 @@ export const ContactForm = (props: FlexProps) => {
         onChange={handleInput}
         marginTop={FIELD_SPACING}
       />
-      <FormControl
+      {/* <FormControl
         as={'fieldset'}
         id={'address'}
         name={'address'}
@@ -346,7 +348,7 @@ export const ContactForm = (props: FlexProps) => {
           value={address}
           onChange={handleInput}
         />
-      </FormControl>
+      </FormControl> */}
       <Button
         isDisabled={isDisabled}
         _hover={isDisabled ? {} : undefined}
