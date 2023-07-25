@@ -5,13 +5,16 @@ import {
   Button,
   Text,
   FlexProps,
+  Box,
+  ScaleFade,
 } from '@chakra-ui/react'
+import { useSize } from '@chakra-ui/react-use-size'
 import {
   ChangeEvent,
   MouseEvent,
   useCallback,
-  useEffect,
   useReducer,
+  useEffect,
   useRef,
   useState,
 } from 'react'
@@ -84,6 +87,8 @@ export const ContactForm = (props: FlexProps) => {
   const [address, setaddress] = useState('')
   const [isDisabled, setIsDisabled] = useState(false)
   const recapchaValue = useRef<ReCAPTCHA>()
+  const formRef = useRef<HTMLElement>(null)
+  const formSize = useSize(formRef)
 
   const FIELD_SPACING = '1rem'
 
@@ -233,10 +238,24 @@ export const ContactForm = (props: FlexProps) => {
 
   return (
     <Flex
+      ref={formRef}
+      position={'relative'}
       direction={'column'}
-      padding={['2.25em 1em', null, '2.25em 1.75em 2.25em 1em']}
+      margin={['2.25em 1em', null, '2.25em 1.75em 2.25em 1em']}
       {...props}
     >
+      <ScaleFade
+        in={isDisabled}
+        initialScale={0}
+        transition={{ enter: { duration: 1 }, exit: { duration: 1 } }}
+      >
+        <Box
+          position={'absolute'}
+          width={formSize?.width}
+          height={formSize?.height}
+          bg={'red'}
+        />
+      </ScaleFade>
       <Flex
         gap={[FIELD_SPACING, null, '1.5rem']}
         direction={['column', null, 'row']}
@@ -327,7 +346,7 @@ export const ContactForm = (props: FlexProps) => {
         alignSelf={'flex-end'}
         marginTop={FIELD_SPACING}
         onClick={handleSubmit}
-        _disabled={{ bgColor: 'form.accent', padding: 0 }}
+        _disabled={{ bgColor: 'form.accent', padding: 0, cursor: 'wait' }}
       >
         {isDisabled ? <PaperPlane /> : 'Send Message'}
       </Button>
