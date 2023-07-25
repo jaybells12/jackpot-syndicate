@@ -2,8 +2,6 @@ import {
   Flex,
   Input,
   FormControl,
-  FormLabel,
-  FormErrorMessage,
   Button,
   Text,
   FlexProps,
@@ -22,6 +20,7 @@ import { Link } from '@chakra-ui/next-js'
 import verifyRecaptcha from 'src/utils/verifyRecaptcha'
 import sendEmail from 'src/utils/sendEmail'
 import { ContactFormField } from './ContactFormField'
+import { PaperPlane } from '@components/PaperPlane'
 
 function reducer(state: FormErrorState, action: FormErrorAction) {
   switch (action.type) {
@@ -100,32 +99,32 @@ export const ContactForm = (props: FlexProps) => {
     )
   }, [isError])
 
-  useEffect(() => {
-    if (address) {
-      // Honey pot field has value
-      // Render Fake Success
-      return
-    }
-    if (isDisabled) {
-      // Check state for validity
-      if (isValid()) {
-        if (!recapchaValue.current) {
-          // ReCaptcha is not loaded
-          // Render Failure Modal
-          setIsDisabled(false)
-          return
-        }
-        // Submission logic continues at ReCaptcha OnChange handler
-        recapchaValue.current.execute()
-        return
-      } else {
-        // Form Field validation failed
-        // Render Failure Modal ?
-        setIsDisabled(false)
-        return
-      }
-    }
-  }, [isDisabled, isValid])
+  // useEffect(() => {
+  //   if (address) {
+  //     // Honey pot field has value
+  //     // Render Fake Success
+  //     return
+  //   }
+  //   if (isDisabled) {
+  //     // Check state for validity
+  //     if (isValid()) {
+  //       if (!recapchaValue.current) {
+  //         // ReCaptcha is not loaded
+  //         // Render Failure Modal
+  //         setIsDisabled(false)
+  //         return
+  //       }
+  //       // Submission logic continues at ReCaptcha OnChange handler
+  //       recapchaValue.current.execute()
+  //       return
+  //     } else {
+  //       // Form Field validation failed
+  //       // Render Failure Modal ?
+  //       setIsDisabled(false)
+  //       return
+  //     }
+  //   }
+  // }, [isDisabled, isValid])
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const field = e.target.id
@@ -320,14 +319,17 @@ export const ContactForm = (props: FlexProps) => {
         />
       </FormControl>
       <Button
+        // Position relative here for the 'fill' nextJS image
+        position={'relative'}
         isDisabled={isDisabled}
         _hover={isDisabled ? {} : undefined}
         variant={'contact'}
         alignSelf={'flex-end'}
         marginTop={FIELD_SPACING}
         onClick={handleSubmit}
+        _disabled={{ bgColor: 'form.accent', padding: 0 }}
       >
-        Send Message
+        {isDisabled ? <PaperPlane /> : 'Send Message'}
       </Button>
       <Text variant={'fineprint'}>
         This site is protected by reCAPTCHA and the Google
