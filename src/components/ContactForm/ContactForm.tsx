@@ -24,6 +24,8 @@ import verifyRecaptcha from 'src/utils/verifyRecaptcha'
 import sendEmail from 'src/utils/sendEmail'
 import { ContactFormField } from './ContactFormField'
 import { PaperPlane } from '@components/PaperPlane'
+import { motion } from 'framer-motion'
+import { ContactFormResults } from './ContactFormResults'
 
 function reducer(state: FormErrorState, action: FormErrorAction) {
   switch (action.type) {
@@ -85,6 +87,8 @@ export const ContactForm = (props: FlexProps) => {
   const [message, setMessage] = useState('')
   // Address is a honeypot field
   const [address, setaddress] = useState('')
+  const [result, setResult] = useState(false)
+  const [showResult, setShowResult] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
   const recapchaValue = useRef<ReCAPTCHA>()
   const formRef = useRef<HTMLElement>(null)
@@ -104,32 +108,33 @@ export const ContactForm = (props: FlexProps) => {
     )
   }, [isError])
 
-  // useEffect(() => {
-  //   if (address) {
-  //     // Honey pot field has value
-  //     // Render Fake Success
-  //     return
-  //   }
-  //   if (isDisabled) {
-  //     // Check state for validity
-  //     if (isValid()) {
-  //       if (!recapchaValue.current) {
-  //         // ReCaptcha is not loaded
-  //         // Render Failure Modal
-  //         setIsDisabled(false)
-  //         return
-  //       }
-  //       // Submission logic continues at ReCaptcha OnChange handler
-  //       recapchaValue.current.execute()
-  //       return
-  //     } else {
-  //       // Form Field validation failed
-  //       // Render Failure Modal ?
-  //       setIsDisabled(false)
-  //       return
-  //     }
-  //   }
-  // }, [isDisabled, isValid])
+  useEffect(() => {
+    if (address) {
+      // Honey pot field has value
+      // Render Fake Success
+      return
+    }
+    if (isDisabled) {
+      // Check state for validity
+      if (isValid()) {
+        if (!recapchaValue.current) {
+          // ReCaptcha is not loaded
+          // Render Failure Modal
+          setResult(false)
+          setIsDisabled(false)
+          setShowResult(true)
+          return
+        }
+        // Submission logic continues at ReCaptcha OnChange handler
+        recapchaValue.current.execute()
+        return
+      } else {
+        // Form Field validation failed
+        setIsDisabled(false)
+        return
+      }
+    }
+  }, [isDisabled, isValid])
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const field = e.target.id
@@ -216,6 +221,7 @@ export const ContactForm = (props: FlexProps) => {
     verifyRequiredFields()
     // When component rerenders, submission logic continues when isDisabled is true
     setIsDisabled(true)
+    // setShowResult(true) // Remove this before pushing to main
   }
 
   const onChange = async (token: string | null) => {
@@ -230,12 +236,24 @@ export const ContactForm = (props: FlexProps) => {
           subject,
           message,
         })
+        if (Boolean(result.success)) {
+          setResult(true)
+        } else {
+          setIsDisabled(false)
+          setResult(false)
+        }
+        setShowResult(true)
+        return
       } else {
         // Captcha Unverified - Render Failure Message (Modal?)
+        setResult(false)
+        setIsDisabled(false)
+        setShowResult(true)
+        return
       }
     }
   }
-
+  console.log('Contact Form Render')
   return (
     <Flex
       ref={formRef}
@@ -244,18 +262,13 @@ export const ContactForm = (props: FlexProps) => {
       margin={['2.25em 1em', null, '2.25em 1.75em 2.25em 1em']}
       {...props}
     >
-      <ScaleFade
-        in={isDisabled}
-        initialScale={0}
-        transition={{ enter: { duration: 1 }, exit: { duration: 1 } }}
-      >
-        <Box
-          position={'absolute'}
-          width={formSize?.width}
-          height={formSize?.height}
-          bg={'red'}
-        />
-      </ScaleFade>
+      <ContactFormResults
+        when={showResult}
+        size={formSize}
+        result={result}
+        duration={0.25}
+        tryAgain={() => setShowResult(false)}
+      />
       <Flex
         gap={[FIELD_SPACING, null, '1.5rem']}
         direction={['column', null, 'row']}
@@ -338,8 +351,6 @@ export const ContactForm = (props: FlexProps) => {
         />
       </FormControl>
       <Button
-        // Position relative here for the 'fill' nextJS image
-        position={'relative'}
         isDisabled={isDisabled}
         _hover={isDisabled ? {} : undefined}
         variant={'contact'}
