@@ -21,6 +21,7 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { Link } from '@chakra-ui/next-js'
 import verifyRecaptcha from 'src/utils/verifyRecaptcha'
 import sendEmail from 'src/utils/sendEmail'
+import { ContactFormField } from './ContactFormField'
 
 function reducer(state: FormErrorState, action: FormErrorAction) {
   switch (action.type) {
@@ -84,6 +85,8 @@ export const ContactForm = (props: FlexProps) => {
   const [address, setaddress] = useState('')
   const [isDisabled, setIsDisabled] = useState(false)
   const recapchaValue = useRef<ReCAPTCHA>()
+
+  const FIELD_SPACING = '1rem'
 
   // If an error property is true, then return false
   const isValid = useCallback(() => {
@@ -155,6 +158,11 @@ export const ContactForm = (props: FlexProps) => {
         break
       case 'phone':
         setPhone(value)
+        if (value && isError.phone) {
+          dispatch({ type: 'phone', payload: false })
+        } else if (!value && !isError.phone) {
+          dispatch({ type: 'phone', payload: true })
+        }
         break
       case 'subject':
         setSubject(value)
@@ -231,162 +239,68 @@ export const ContactForm = (props: FlexProps) => {
       {...props}
     >
       <Flex
-        gap={'1.5rem'}
+        gap={[FIELD_SPACING, null, '1.5rem']}
         direction={['column', null, 'row']}
       >
-        <FormControl
-          as={'fieldset'}
+        <ContactFormField
           isRequired
           isDisabled={isDisabled}
           isInvalid={isError.first}
-          id='first'
-        >
-          <FormLabel
-            as={'legend'}
-            requiredIndicator={<>*</>}
-          >
-            First Name
-          </FormLabel>
-          <Input
-            value={first}
-            onChange={handleInput}
-          />
-          <FormErrorMessage
-            position={'absolute'}
-            top={'5'}
-          >
-            First name is required.
-          </FormErrorMessage>
-        </FormControl>
-        <FormControl
-          as={'fieldset'}
+          id={'first'}
+          value={first}
+          onChange={handleInput}
+        />
+        <ContactFormField
           isRequired
           isDisabled={isDisabled}
           isInvalid={isError.last}
-          id='last'
-        >
-          <FormLabel
-            as={'legend'}
-            requiredIndicator={<>*</>}
-          >
-            Last Name
-          </FormLabel>
-          <Input
-            value={last}
-            onChange={handleInput}
-          />
-          <FormErrorMessage
-            position={'absolute'}
-            top={'5'}
-          >
-            Last name is required.
-          </FormErrorMessage>
-        </FormControl>
+          id={'last'}
+          value={last}
+          onChange={handleInput}
+        />
       </Flex>
       <Flex
-        gap={'1.5rem'}
+        gap={[FIELD_SPACING, null, '1.5rem']}
         direction={['column', null, 'row']}
-        marginTop={['1.5rem', null, '2rem']}
+        marginTop={FIELD_SPACING}
       >
-        <FormControl
-          as={'fieldset'}
+        <ContactFormField
           isRequired
           isDisabled={isDisabled}
           isInvalid={isError.email}
-          id='email'
-        >
-          <FormLabel
-            as={'legend'}
-            requiredIndicator={<>*</>}
-          >
-            Email
-          </FormLabel>
-          <Input
-            value={email}
-            onChange={handleInput}
-          />
-          <FormErrorMessage
-            position={'absolute'}
-            top={'5'}
-          >
-            Email is required.
-          </FormErrorMessage>
-        </FormControl>
-        <FormControl
-          as={'fieldset'}
+          id={'email'}
+          value={email}
+          onChange={handleInput}
+        />
+
+        <ContactFormField
           isRequired
           isDisabled={isDisabled}
           isInvalid={isError.phone}
-          id='phone'
-        >
-          <FormLabel
-            as={'legend'}
-            requiredIndicator={<>*</>}
-          >
-            Phone Number
-          </FormLabel>
-          <Input
-            value={phone}
-            onChange={handleInput}
-          />
-          <FormErrorMessage
-            position={'absolute'}
-            top={'5'}
-          >
-            Phone number is required.
-          </FormErrorMessage>
-        </FormControl>
+          id={'phone'}
+          value={phone}
+          onChange={handleInput}
+        />
       </Flex>
-      <FormControl
-        as={'fieldset'}
+      <ContactFormField
         isRequired
         isDisabled={isDisabled}
         isInvalid={isError.subject}
-        id='subject'
-        marginTop={['1.5rem', null, '2rem']}
-      >
-        <FormLabel
-          as={'legend'}
-          requiredIndicator={<>*</>}
-        >
-          Subject
-        </FormLabel>
-        <Input
-          value={subject}
-          onChange={handleInput}
-        />
-        <FormErrorMessage
-          position={'absolute'}
-          top={'5'}
-        >
-          Subject is required.
-        </FormErrorMessage>
-      </FormControl>
-      <FormControl
-        as={'fieldset'}
+        id={'subject'}
+        value={subject}
+        onChange={handleInput}
+        marginTop={FIELD_SPACING}
+      />
+
+      <ContactFormField
         isRequired
         isDisabled={isDisabled}
         isInvalid={isError.message}
-        id='message'
-        marginTop={['1.5rem', null, '2rem']}
-      >
-        <FormLabel
-          as={'legend'}
-          requiredIndicator={<>*</>}
-        >
-          Message
-        </FormLabel>
-        <Input
-          value={message}
-          onChange={handleInput}
-        />
-        <FormErrorMessage
-          position={'absolute'}
-          top={'5'}
-        >
-          Message is required.
-        </FormErrorMessage>
-      </FormControl>
+        id={'message'}
+        value={message}
+        onChange={handleInput}
+        marginTop={FIELD_SPACING}
+      />
       <FormControl
         as={'fieldset'}
         id={'address'}
@@ -398,6 +312,7 @@ export const ContactForm = (props: FlexProps) => {
         width={0}
         zIndex={-2}
         tabIndex={-1}
+        marginTop={FIELD_SPACING}
       >
         <Input
           value={address}
@@ -409,7 +324,7 @@ export const ContactForm = (props: FlexProps) => {
         _hover={isDisabled ? {} : undefined}
         variant={'contact'}
         alignSelf={'flex-end'}
-        marginTop={'2rem'}
+        marginTop={FIELD_SPACING}
         onClick={handleSubmit}
       >
         Send Message
