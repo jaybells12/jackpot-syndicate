@@ -24,14 +24,6 @@ const features = [
     image: recordingStudioImg,
     url: '/recording-studio',
   },
-  // {
-  //   title: 'Live Broadcasts & Events',
-  //   image: liveBroadcastImg,
-  // },
-  // {
-  //   title: 'Gear Rental List',
-  //   image: gearRentalImg,
-  // },
 ]
 
 const navLinks = [
@@ -39,19 +31,10 @@ const navLinks = [
     text: 'Jackpot Studios',
     url: '/',
   },
-  // {
-  //   text: 'Work',
-  // },
-  // {
-  //   text: 'Equipment',
-  // },
-  // {
-  //   text: 'About',
-  // },
 ]
 
 const hero = {
-  title: 'We Build. You Grow. We Cultivate.',
+  title: 'We Build. We Cultivate. You Grow.',
   text: 'We help Creators and Brands grow their communities to maximize earnings across social platforms.',
 }
 
