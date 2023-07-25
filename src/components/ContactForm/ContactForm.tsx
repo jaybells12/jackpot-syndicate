@@ -5,8 +5,6 @@ import {
   Button,
   Text,
   FlexProps,
-  Box,
-  ScaleFade,
 } from '@chakra-ui/react'
 import { useSize } from '@chakra-ui/react-use-size'
 import {
@@ -24,7 +22,6 @@ import verifyRecaptcha from 'src/utils/verifyRecaptcha'
 import sendEmail from 'src/utils/sendEmail'
 import { ContactFormField } from './ContactFormField'
 import { PaperPlane } from '@components/PaperPlane'
-import { motion } from 'framer-motion'
 import { ContactFormResults } from './ContactFormResults'
 
 function reducer(state: FormErrorState, action: FormErrorAction) {
@@ -134,7 +131,7 @@ export const ContactForm = (props: FlexProps) => {
         return
       }
     }
-  }, [isDisabled, isValid])
+  }, [isDisabled, isValid, address])
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const field = e.target.id
@@ -253,7 +250,7 @@ export const ContactForm = (props: FlexProps) => {
       }
     }
   }
-  console.log('Contact Form Render')
+
   return (
     <Flex
       ref={formRef}
