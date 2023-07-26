@@ -58,10 +58,7 @@ export const Contact = forwardRef<OffsetTopHandle, ContactProps>(
             width={'100%'}
             flex={'1'}
           />
-          <ContactForm
-            width={'100%'}
-            flex={'2'}
-          />
+          <ContactForm flex={'2'} />
         </Flex>
       </Container>
     )

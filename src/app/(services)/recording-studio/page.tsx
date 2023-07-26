@@ -8,7 +8,6 @@ import card03 from '@public/card_recording-studio-03.webp'
 // import { Image } from '@chakra-ui/next-js'
 import { TempImage } from '@components/TempImage'
 import { ServiceCard } from '@components/ServiceCard'
-import { HEADER_HEIGHT } from '@components/NavBar'
 
 const TITLE = 'Recording Studio & ISO Booth'
 

@@ -7,7 +7,6 @@ import card02 from '@public/card_podcast-02.webp'
 // import { Image } from '@chakra-ui/next-js'
 import { TempImage } from '@components/TempImage'
 import { ServiceCard } from '@components/ServiceCard'
-import { HEADER_HEIGHT } from '@components/NavBar'
 
 const TITLE = 'Podcast Room'
 
