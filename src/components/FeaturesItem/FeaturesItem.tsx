@@ -53,10 +53,8 @@ export const FeaturesItem = ({ item, linkProps, imageProps }: FeaturesItem) => {
 
   useEffect(() => {
     if (isTouchScreen && isCenter) {
-      console.log('Touch/Center entered')
       handleMouseEnter()
     } else if (isTouchScreen) {
-      console.log('Touch only entered')
       handleMouseLeave()
     }
   }, [isTouchScreen, isCenter, handleMouseEnter, handleMouseLeave])
