@@ -10,7 +10,7 @@ import {
 import { Link } from '@chakra-ui/next-js'
 import { navLinks } from 'src/data/staticData'
 import { Logo } from '@components/Logo'
-import { useScrollEasing } from 'src/hooks/useScrollIntoView'
+import { useScrollIntoView } from 'src/hooks/useScrollIntoView'
 import { OffsetTopHandle } from '@components/Contact'
 import { RefObject, useRef } from 'react'
 
@@ -64,13 +64,13 @@ export const NavBar = ({ footerRef }: NavBarProps) => {
         </UnorderedList>
         <Box display={['none', null, 'flex']}>
           <Button
-            onClick={useScrollEasing(footerRef)}
+            onClick={useScrollIntoView(footerRef)}
             variant={'primary'}
           >
             book now
           </Button>
           <Button
-            onClick={useScrollEasing(footerRef)}
+            onClick={useScrollIntoView(footerRef)}
             variant={'primary'}
             marginLeft={'1.125rem'}
           >

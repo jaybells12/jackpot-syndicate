@@ -1,10 +1,11 @@
-import { Link, ImageProps, LinkProps, Image } from '@chakra-ui/next-js'
-import { Box, useBreakpointValue } from '@chakra-ui/react'
+import { Link, ImageProps, LinkProps } from '@chakra-ui/next-js'
+import { Box } from '@chakra-ui/react'
 import { StaticImageData } from 'next/image'
 import { useAnimate } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useInView, animate, motion } from 'framer-motion'
 import { TempImage } from '@components/TempImage'
+import { useIsTouchScreen } from 'src/hooks/'
 
 export type FeaturesItem = {
   linkProps?: Partial<LinkProps>
@@ -16,12 +17,31 @@ export type FeaturesItem = {
   }
 }
 
-export const FeaturesItem = (props: FeaturesItem) => {
-  const { item, linkProps, imageProps } = props
-  // const rootMargin = useBreakpointValue({base: })
+export const FeaturesItem = ({ item, linkProps, imageProps }: FeaturesItem) => {
   const [scope, animateImg] = useAnimate()
   const linkRef = useRef(null)
   const isInView = useInView(linkRef, { margin: '-28% 0px -33% 0px' })
+  const isCenter = useInView(linkRef, {
+    margin: '-40% 0px -40% 0px',
+    amount: 0.5,
+  })
+  const isTouchScreen = useIsTouchScreen()
+
+  const handleMouseEnter = useCallback(async () => {
+    await animateImg(
+      scope.current,
+      { opacity: 1 },
+      { duration: 0.3, ease: 'easeOut' }
+    )
+  }, [scope])
+
+  const handleMouseLeave = useCallback(async () => {
+    await animateImg(
+      scope.current,
+      { opacity: 0 },
+      { duration: 0.3, ease: 'easeOut' }
+    )
+  }, [scope])
 
   useEffect(() => {
     if (isInView) {
@@ -31,21 +51,13 @@ export const FeaturesItem = (props: FeaturesItem) => {
     }
   }, [isInView])
 
-  const handleMouseEnter = async () => {
-    await animateImg(
-      scope.current,
-      { opacity: 1 },
-      { duration: 0.3, ease: 'easeOut' }
-    )
-  }
-
-  const handleMouseLeave = async () => {
-    await animateImg(
-      scope.current,
-      { opacity: 0 },
-      { duration: 0.3, ease: 'easeOut' }
-    )
-  }
+  useEffect(() => {
+    if (isTouchScreen && isCenter) {
+      handleMouseEnter()
+    } else if (isTouchScreen) {
+      handleMouseLeave()
+    }
+  }, [isTouchScreen, isCenter, handleMouseEnter, handleMouseLeave])
 
   return (
     <Box>
