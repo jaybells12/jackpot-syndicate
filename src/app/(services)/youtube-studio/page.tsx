@@ -6,7 +6,6 @@ import card01 from '@public/homepage_youtube-studio.webp' //Temporary until Jon 
 // import { Image } from '@chakra-ui/next-js'
 import { TempImage } from '@components/TempImage'
 import { ServiceCard } from '@components/ServiceCard'
-import { HEADER_HEIGHT } from '@components/NavBar'
 
 const TITLE = 'Youtube Studio'
 

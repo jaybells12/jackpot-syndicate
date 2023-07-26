@@ -6,7 +6,9 @@ const baiJamjuree = Bai_Jamjuree({
   style: ['normal'],
 })
 
-export default {
+const fonts = {
   BaiJamjuree: baiJamjuree.style.fontFamily,
   body: `${baiJamjuree.style.fontFamily}, Verdana, sans-serif`,
 }
+
+export default fonts
