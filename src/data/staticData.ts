@@ -27,9 +27,25 @@ const features = [
 ]
 
 const navLinks = [
+  // {
+  //   text: 'Jackpot Studios',
+  //   url: '/',
+  // },
   {
-    text: 'Jackpot Studios',
-    url: '/',
+    text: 'Live Stage',
+    url: '/live-stage',
+  },
+  {
+    text: 'Podcast Studio',
+    url: '/podcast-room',
+  },
+  {
+    text: 'Youtube Studio',
+    url: '/youtube-studio',
+  },
+  {
+    text: 'Recording Studio / ISO Booth',
+    url: '/recording-studio',
   },
 ]
 
