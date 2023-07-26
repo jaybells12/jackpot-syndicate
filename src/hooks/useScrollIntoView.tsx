@@ -4,7 +4,7 @@ import { OffsetTopHandle } from '@components/Contact'
 import { RefObject } from 'react'
 
 // Need to pass a origin ref and an array of target Refs to this, instead of accessing DOM directly
-export const useScrollEasing = (targetRef: RefObject<OffsetTopHandle>) => {
+export const useScrollIntoView = (targetRef: RefObject<OffsetTopHandle>) => {
   return (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     e.preventDefault()
 
