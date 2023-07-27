@@ -44,8 +44,9 @@ export default function ServicePage() {
           {TITLE}
         </Heading>
         <ServiceCard
-          cardImg={card01}
-          altText={ALT}
+          images={[card01]}
+          // cardImg={card01}
+          // altText={ALT}
           titleLeft={'Description'}
           textLeft={DESCRIPTION}
           titleRight={'Gear'}
