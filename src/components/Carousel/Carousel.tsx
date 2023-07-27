@@ -11,7 +11,7 @@ export type CarouselProps = {
 
 export const Carousel = ({ images }: CarouselProps) => {
   const [index, setIndex] = useState(0)
-  const intervalRef = useRef<NodeJS.Timer>()
+  const intervalRef = useRef<NodeJS.Timer | null>()
   const sizeRef = useRef(null)
   const imageSize = useSize(sizeRef)
   const count = useMemo(() => images.length - 1, [images])
@@ -45,10 +45,17 @@ export const Carousel = ({ images }: CarouselProps) => {
 
   useEffect(() => {
     if (count) {
-      intervalRef.current = setInterval(nextImg, 5000)
+      if (!intervalRef.current) {
+        intervalRef.current = setInterval(nextImg, 5000)
+      }
     }
 
-    return () => clearInterval(intervalRef.current)
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+        intervalRef.current = null
+      }
+    }
   }, [nextImg, count])
 
   return (
