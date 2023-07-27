@@ -7,13 +7,15 @@ import {
   Text,
   useMediaQuery,
 } from '@chakra-ui/react'
+import { Carousel } from '@components/Carousel/Carousel'
 // import { Image } from '@chakra-ui/next-js'
 import { TempImage } from '@components/TempImage'
 import { StaticImageData } from 'next/image'
 
 export type ServiceCardProps = {
-  cardImg: StaticImageData
-  altText: string
+  // cardImg: StaticImageData
+  images: StaticImageData[]
+  // altText: string
   titleLeft: string
   textLeft: string
   titleRight: string
@@ -21,8 +23,9 @@ export type ServiceCardProps = {
 }
 
 export const ServiceCard = ({
-  cardImg,
-  altText,
+  // cardImg,
+  // altText,
+  images,
   titleRight,
   textRight,
   titleLeft,
@@ -34,11 +37,7 @@ export const ServiceCard = ({
       bgColor={'background.dark'}
     >
       <CardBody>
-        <TempImage
-          src={cardImg}
-          alt={altText}
-          priority
-        />
+        <Carousel images={images} />
       </CardBody>
       <CardFooter>
         <Box as={'article'}>
