@@ -20,7 +20,7 @@ type NavBarProps = {
 export const HEADER_HEIGHT = 95
 
 export const NavBar = ({ footerRef }: NavBarProps) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  // const { isOpen, onOpen, onClose } = useDisclosure()
   const navRef = useRef<HTMLElement>(null)
 
   return (
@@ -31,7 +31,9 @@ export const NavBar = ({ footerRef }: NavBarProps) => {
       backgroundColor={'background.header'}
       position={'sticky'}
       top={'0'}
-      padding={'1.2rem 1.5rem'}
+      paddingBlock={'1.2rem'}
+      paddingInline={['1rem', null, null, null, '1.5rem']}
+      // padding={['1.2rem 1.5rem']}
       zIndex={'banner'}
     >
       <Flex
@@ -39,6 +41,7 @@ export const NavBar = ({ footerRef }: NavBarProps) => {
         justify={['center', null, 'space-between']}
         align={'center'}
         minWidth={'100%'}
+        gap={'1rem'}
       >
         <Link href={'/'}>
           <Logo
@@ -49,7 +52,6 @@ export const NavBar = ({ footerRef }: NavBarProps) => {
         <UnorderedList
           variant={'navlinks'}
           marginInlineStart={0}
-          display={['none', null, 'flex']}
         >
           {navLinks.map((link, idx) => (
             <ListItem key={idx}>
@@ -64,6 +66,7 @@ export const NavBar = ({ footerRef }: NavBarProps) => {
         </UnorderedList>
         <Box display={['none', null, 'flex']}>
           <Button
+            display={['none', null, null, 'inline-flex']}
             onClick={useScrollIntoView(footerRef)}
             variant={'primary'}
           >
@@ -72,7 +75,7 @@ export const NavBar = ({ footerRef }: NavBarProps) => {
           <Button
             onClick={useScrollIntoView(footerRef)}
             variant={'primary'}
-            marginLeft={'1.125rem'}
+            marginLeft={[null, null, null, '1.125rem']}
           >
             contact
           </Button>

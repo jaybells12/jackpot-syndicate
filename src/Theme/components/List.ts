@@ -7,15 +7,18 @@ const { definePartsStyle, defineMultiStyleConfig } =
 const variants = {
   navlinks: definePartsStyle({
     container: {
-      display: 'flex',
-      gap: '2.75rem', // 2.25rem on Figma
+      display: ['none', null, 'flex'],
+      gap: [null, null, '1rem', null, '2rem', '2.75rem'], // 2.25rem on Figma
       alignItems: 'center',
       justifyContent: 'center',
     },
     item: {
+      maxWidth: [null, null, '130px', '160px'],
+      width: 'fit-content',
+      textAlign: 'center',
       listStyle: 'none',
-      fontSize: '1.25rem', // 1rem on Figma
-      lineHeight: '1.5',
+      fontSize: [null, null, '1rem', '1.25rem'], // 1rem on Figma
+      lineHeight: '1', // changing this
       color: 'text.medium',
       _hover: {
         color: 'text.hover',
