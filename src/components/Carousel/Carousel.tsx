@@ -4,17 +4,21 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useSize } from '@chakra-ui/react-use-size'
 import { Box } from '@chakra-ui/react'
+import { rangeWrap } from 'src/utils'
 
 export type CarouselProps = {
   images: StaticImageData[]
 }
 
 export const Carousel = ({ images }: CarouselProps) => {
-  const [index, setIndex] = useState(0)
   const intervalRef = useRef<NodeJS.Timer | null>()
   const sizeRef = useRef(null)
   const imageSize = useSize(sizeRef)
   const count = useMemo(() => images.length - 1, [images])
+  // Infinite pagination with wrap function allows for uniquing key of motion element
+  const [page, setPage] = useState(0)
+  const index = rangeWrap(0, count, page)
+
   const variants = {
     enter: (distance: number) => {
       return {
@@ -31,25 +35,16 @@ export const Carousel = ({ images }: CarouselProps) => {
     },
   }
 
-  // const prevImg = useCallback(() => {
-  //   if (count) {
-  //     setIndex((s) => (s === 0 ? count : s - 1))
-  //   }
-  // }, [images, count])
-
   const nextImg = useCallback(() => {
     if (count) {
-      setIndex((s) => (s === count ? 0 : s + 1))
+      setPage((s) => s + 1)
     }
   }, [images, count])
 
   useEffect(() => {
-    if (count) {
-      if (!intervalRef.current) {
-        intervalRef.current = setInterval(nextImg, 5000)
-      }
+    if (count && !intervalRef.current) {
+      intervalRef.current = setInterval(nextImg, 5000)
     }
-
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current)
@@ -62,7 +57,7 @@ export const Carousel = ({ images }: CarouselProps) => {
     <Box ref={sizeRef}>
       <AnimatePresence mode={'popLayout'}>
         <motion.div
-          key={images[index].src}
+          key={page}
           variants={variants}
           initial={'enter'}
           animate={'center'}
@@ -72,13 +67,13 @@ export const Carousel = ({ images }: CarouselProps) => {
         >
           <TempImage
             priority
-            key={images[index].src}
             src={images[index].src}
             alt={'carousel image'}
             width={images[index].width}
             height={images[index].height}
             sx={{
               height: 'auto',
+              width: imageSize?.width || 'auto',
             }}
           />
         </motion.div>
