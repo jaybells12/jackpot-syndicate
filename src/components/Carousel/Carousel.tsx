@@ -49,7 +49,7 @@ export const Carousel = ({ images }: CarouselProps) => {
     if (count) {
       setPage(([prevPage]) => [prevPage + 1, 1])
     }
-  }, [images, count])
+  }, [count])
 
   const startAutoplay = () => {
     if (count && !intervalRef.current) {
@@ -131,6 +131,7 @@ export const Carousel = ({ images }: CarouselProps) => {
         {count &&
           images.map((_, idx) => (
             <Circle
+              key={idx}
               size={[2, 3, 4]}
               bgColor={index === idx ? 'white' : 'gray.500'}
             />

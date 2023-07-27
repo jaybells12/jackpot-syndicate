@@ -33,7 +33,7 @@ export const FeaturesItem = ({ item, linkProps, imageProps }: FeaturesItem) => {
       { opacity: 1 },
       { duration: 0.3, ease: 'easeOut' }
     )
-  }, [scope])
+  }, [scope, animateImg])
 
   const handleMouseLeave = useCallback(async () => {
     await animateImg(
@@ -41,7 +41,7 @@ export const FeaturesItem = ({ item, linkProps, imageProps }: FeaturesItem) => {
       { opacity: 0 },
       { duration: 0.3, ease: 'easeOut' }
     )
-  }, [scope])
+  }, [scope, animateImg])
 
   useEffect(() => {
     if (isInView) {
