@@ -15,11 +15,14 @@ export default function Home() {
 
   return (
     <>
+      {/* NavBar could be in layout */}
       <NavBar footerRef={footerRef} />
+      {/* Main could be in layout */}
       <main>
         <Hero />
         <Features />
       </main>
+      {/* Contact could be in layout */}
       <Contact ref={footerRef} />
     </>
   )
