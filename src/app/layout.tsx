@@ -26,7 +26,7 @@ export const metadata = {
   creator: 'James B',
   robots: {
     index: true,
-    follow: false,
+    follow: true,
     nocache: false,
     noarchive: false,
     nosnippet: false,
