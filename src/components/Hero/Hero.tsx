@@ -35,7 +35,6 @@ export const Hero = (props: ContainerProps & AspectRatioProps) => {
               alt={'Hero image'}
               width={heroImage.width}
               height={heroImage.height}
-              quality={100}
               // Helps to keep the images aligned
               marginTop={'0.45%'}
             />
