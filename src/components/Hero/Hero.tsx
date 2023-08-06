@@ -30,6 +30,7 @@ export const Hero = (props: ContainerProps & AspectRatioProps) => {
         <IframeFacade
           Facade={() => (
             <TempImage
+              priority
               src={heroImage}
               alt={'Hero image'}
               width={heroImage.width}
