@@ -16,13 +16,18 @@ import {
   useRef,
   useState,
 } from 'react'
-import ReCAPTCHA from 'react-google-recaptcha'
+// import ReCAPTCHA from 'react-google-recaptcha'
 import { Link } from '@chakra-ui/next-js'
 import verifyRecaptcha from 'src/utils/verifyRecaptcha'
 import sendEmail from 'src/utils/sendEmail'
 import { ContactFormField } from './ContactFormField'
 import { PaperPlane } from '@components/PaperPlane'
 import { ContactFormResults } from './ContactFormResults'
+import dynamic from 'next/dynamic'
+
+const ReCAPTCHA = dynamic(() =>
+  import('@components/LazyReCaptcha').then((mod) => mod.LazyReCaptcha)
+)
 
 function reducer(state: FormErrorState, action: FormErrorAction) {
   switch (action.type) {
@@ -87,7 +92,8 @@ export const ContactForm = (props: FlexProps) => {
   const [result, setResult] = useState(false)
   const [showResult, setShowResult] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
-  const recapchaValue = useRef<ReCAPTCHA>()
+  const recaptchaValue = useRef(null)
+  const [recapNeeded, setRecapNeeded] = useState(false)
   const formRef = useRef<HTMLElement>(null)
   const formSize = useSize(formRef)
 
@@ -116,7 +122,7 @@ export const ContactForm = (props: FlexProps) => {
     if (isDisabled) {
       // Check state for validity
       if (isValid()) {
-        if (!recapchaValue.current) {
+        if (!recaptchaValue.current) {
           // ReCaptcha is not loaded
           // Render Failure Modal
           setResult(false)
@@ -125,7 +131,8 @@ export const ContactForm = (props: FlexProps) => {
           return
         }
         // Submission logic continues at ReCaptcha OnChange handler
-        recapchaValue.current.execute()
+        //@ts-expect-error Couldn't figure out why typescript assumes ref is a never here, but it works.
+        recaptchaValue.current.execute()
         return
       } else {
         // Form Field validation failed
@@ -138,6 +145,10 @@ export const ContactForm = (props: FlexProps) => {
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const field = e.target.id
     const value = e.target.value
+
+    if (!recapNeeded) {
+      setRecapNeeded(true)
+    }
 
     switch (field) {
       case 'first':
@@ -216,6 +227,9 @@ export const ContactForm = (props: FlexProps) => {
 
   const handleSubmit = (e: MouseEvent) => {
     e.preventDefault()
+    console.log('RecapNeeded: ', recapNeeded)
+    console.log('RecapRef: ', recaptchaValue.current)
+
     // Validate Form Fields
     verifyRequiredFields()
     // When component rerenders, submission logic continues when isDisabled is true
@@ -377,13 +391,12 @@ export const ContactForm = (props: FlexProps) => {
         </Link>{' '}
         apply.
       </Text>
-      <ReCAPTCHA
-        //@ts-ignore Legacy Ref vs MutableRef
-        ref={recapchaValue}
-        size={'invisible'}
-        sitekey={process.env.NEXT_PUBLIC_INVIS_RECAP_SITE as string}
-        onChange={onChange}
-      />
+      {recapNeeded && (
+        <ReCAPTCHA
+          recapRef={recaptchaValue}
+          onChange={onChange}
+        />
+      )}
     </Flex>
   )
 }
