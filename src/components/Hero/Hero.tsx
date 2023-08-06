@@ -7,7 +7,10 @@ import {
   Heading,
   Text,
 } from '@chakra-ui/react'
+import { IframeFacade } from '@components/IframeLoader'
+import { TempImage } from '@components/TempImage'
 import { hero } from 'src/data/staticData'
+import heroImage from '@public/video-facade.webp'
 
 export const Hero = (props: ContainerProps & AspectRatioProps) => {
   return (
@@ -20,16 +23,29 @@ export const Hero = (props: ContainerProps & AspectRatioProps) => {
       overflow={'hidden'}
     >
       <AspectRatio
-        ratio={16.27 / 9}
+        ratio={16 / 9}
         width={['300%', null, '150%', null, '100%']}
         marginLeft={['-4px', null, '-3px', null, '0']}
       >
-        <iframe
-          src={
-            'https://player.vimeo.com/video/813019070?h=64f8db3e7b&title=0&portrait=0&muted=1&autopause=0&loop=1&background=1&app_id=122963'
-          }
+        <IframeFacade
+          Facade={() => (
+            <TempImage
+              src={heroImage}
+              alt={'Hero image'}
+              width={heroImage.width}
+              height={heroImage.height}
+              quality={100}
+              // Helps to keep the images aligned
+              marginTop={'0.45%'}
+            />
+          )}
+          src={'https://player.vimeo.com/video/813019070?background=1'}
+          title={'hero video'}
           referrerPolicy={'no-referrer'}
-          style={{ opacity: 0.75, pointerEvents: 'none' }}
+          style={{
+            pointerEvents: 'none',
+            zIndex: '2',
+          }}
         />
       </AspectRatio>
       <Box
@@ -38,6 +54,7 @@ export const Hero = (props: ContainerProps & AspectRatioProps) => {
         left={'50%'}
         transform={'translate(-50%, -50%)'}
         width={['80%', null, '60%', 'unset']}
+        zIndex={3}
       >
         <Heading
           as={'h1'}

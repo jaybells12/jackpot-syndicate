@@ -1,4 +1,4 @@
-import { chakra, ChakraComponent } from '@chakra-ui/react'
+import { chakra, ChakraComponent, shouldForwardProp } from '@chakra-ui/react'
 import NextImage, { ImageProps as NextImageProps } from 'next/image'
 // This fix is temporary until chakra/next-js play nice together again
 export const TempImage: ChakraComponent<'img', NextImageProps> = chakra(
@@ -19,6 +19,7 @@ export const TempImage: ChakraComponent<'img', NextImageProps> = chakra(
         'blurDataURL',
         'unoptimized',
         'onLoadingComplete',
+        'style',
       ].includes(prop),
   }
 )
