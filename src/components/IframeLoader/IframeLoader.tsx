@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import React, { IframeHTMLAttributes } from 'react'
+import React, { IframeHTMLAttributes, useEffect, useState } from 'react'
 
 type IframeFacadeProps = IframeHTMLAttributes<HTMLIFrameElement> & {
   Facade: React.FunctionComponent
@@ -25,11 +25,17 @@ export const IframeFacade: React.FunctionComponent<IframeFacadeProps> = ({
 export const Iframe: React.FunctionComponent<
   IframeHTMLAttributes<HTMLIFrameElement>
 > = ({ title, src, style, ...rest }) => {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
     <iframe
       loading='eager'
       title={title}
-      src={src}
+      src={mounted ? src : ''}
       style={{
         ...style,
       }}
