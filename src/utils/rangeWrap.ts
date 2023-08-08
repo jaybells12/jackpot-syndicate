@@ -16,13 +16,10 @@ export const rangeWrap = (
   }
 
   const range = max - min + 1
-  let newCurrent = 0
 
-  if (current > max) {
-    newCurrent = rangeWrap(min, max, current - range)
-  } else if (current < min) {
-    newCurrent = rangeWrap(min, max, current + range)
+  while (current < min) {
+    current += range
   }
 
-  return newCurrent
+  return current % range
 }
