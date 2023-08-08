@@ -7,8 +7,16 @@
 import { useRef } from 'react'
 import { NavBar } from '@components/NavBar'
 import { Hero } from '@components/Hero'
-import { Features } from '@components/Features'
-import { Contact, OffsetTopHandle } from '@components/Contact'
+import { OffsetTopHandle } from '@components/Contact'
+import dynamic from 'next/dynamic'
+
+const Contact = dynamic(() =>
+  import('@components/Contact').then((module) => module.Contact)
+)
+
+const Features = dynamic(() =>
+  import('@components/Features').then((module) => module.Features)
+)
 
 export default function Home() {
   const footerRef = useRef<OffsetTopHandle>(null)
