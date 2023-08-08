@@ -7,7 +7,7 @@
 import { useRef } from 'react'
 import { NavBar } from '@components/NavBar'
 import { Hero } from '@components/Hero'
-import { OffsetTopHandle } from '@components/Contact'
+import { ContactProps, OffsetTopHandle } from '@components/Contact'
 import dynamic from 'next/dynamic'
 
 const Contact = dynamic(() =>
@@ -16,6 +16,10 @@ const Contact = dynamic(() =>
 
 const Features = dynamic(() =>
   import('@components/Features').then((module) => module.Features)
+)
+
+const WrappedContact = ({ forwardedRef }: ContactProps) => (
+  <Contact forwardedRef={forwardedRef} />
 )
 
 export default function Home() {
@@ -31,7 +35,7 @@ export default function Home() {
         <Features />
       </main>
       {/* Contact could be in layout */}
-      <Contact ref={footerRef} />
+      <WrappedContact forwardedRef={footerRef} />
     </>
   )
 }

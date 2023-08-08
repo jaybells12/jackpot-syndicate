@@ -35,7 +35,7 @@ export const Iframe: React.FunctionComponent<
     <iframe
       loading='eager'
       title={title}
-      src={mounted ? src : ''}
+      src={mounted ? src : undefined}
       style={{
         ...style,
       }}

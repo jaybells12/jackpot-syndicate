@@ -1,12 +1,6 @@
 'use client'
 
-import {
-  Box,
-  Container,
-  Heading,
-  useBreakpointValue,
-  useMediaQuery,
-} from '@chakra-ui/react'
+import { Box, Container, Heading } from '@chakra-ui/react'
 import backgroundImg from '@public/service_background_live-stage.webp'
 import card01 from '@public/card_live-stage-01.webp'
 import card02 from '@public/card_live-stage-02.webp'
