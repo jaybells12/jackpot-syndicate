@@ -28,6 +28,7 @@ export default function ServicePage() {
     >
       <TempImage
         priority
+        placeholder={'blur'}
         // Position absolute allows 'Box' sibling to position itself relative to the header
         position={'absolute'}
         top={'0'}

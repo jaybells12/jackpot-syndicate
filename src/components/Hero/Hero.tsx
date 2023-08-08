@@ -31,6 +31,7 @@ export const Hero = (props: ContainerProps & AspectRatioProps) => {
           Facade={() => (
             <TempImage
               priority
+              placeholder={'blur'}
               src={heroImage}
               alt={'Hero image'}
               width={heroImage.width}

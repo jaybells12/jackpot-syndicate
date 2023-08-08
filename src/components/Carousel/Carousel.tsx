@@ -110,7 +110,8 @@ export const Carousel = ({ images }: CarouselProps) => {
         >
           <TempImage
             priority
-            src={images[index].src}
+            placeholder={'blur'}
+            src={images[index]}
             alt={'carousel image'}
             width={images[index].width}
             height={images[index].height}
@@ -118,6 +119,7 @@ export const Carousel = ({ images }: CarouselProps) => {
               height: 'auto',
               width: imageSize?.width || 'auto',
             }}
+            sizes={'(max-width: 992px) 100vw, (max-width: 1536px) 75vw, 50vw'}
             pointerEvents={'none'}
           />
         </motion.div>
