@@ -36,7 +36,7 @@ export const ContactFormField = ({
       {...spaceProps}
     >
       <FormLabel
-        as={'legend'}
+        // as={'legend'}
         requiredIndicator={<>*</>}
       >
         {id === 'first' || id === 'last' ? `${name} Name` : name}
