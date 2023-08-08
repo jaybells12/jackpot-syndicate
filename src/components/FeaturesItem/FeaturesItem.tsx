@@ -82,7 +82,8 @@ export const FeaturesItem = ({ item, linkProps, imageProps }: FeaturesItem) => {
       </motion.div>
       <TempImage
         ref={scope}
-        src={item.image.src}
+        placeholder={'blur'}
+        src={item.image}
         alt={item.title}
         width={item.image.width}
         height={item.image.height}
