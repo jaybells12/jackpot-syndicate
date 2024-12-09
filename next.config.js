@@ -5,10 +5,10 @@
 // `
 
 const ContentSecurityPolicy = `
- default-src 'self';
+ default-src 'self' vitals.vercel-insights.com/v1/vitals;
  font-src 'self';
- img-src 'self';
- script-src 'self' 'unsafe-inline' 'unsafe-eval' player.vimeo.com;
+ img-src 'self' data:;
+ script-src 'self' 'unsafe-inline' 'unsafe-eval' player.vimeo.com pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3446163124599892 www.googletagmanager.com;
  style-src 'self' 'unsafe-inline';
  frame-src 'self' player.vimeo.com 19vod-adaptive.akamaized.net;
 `;
@@ -26,11 +26,11 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/:path*",
+        source: '/:path*',
         headers: [
           {
-            key: "Content-Security-Policy",
-            value: ContentSecurityPolicy.replace(/\s{2,}/g, " ").trim(),
+            key: 'Content-Security-Policy',
+            value: ContentSecurityPolicy.replace(/\s{2,}/g, ' ').trim(),
           },
         ],
       },
