@@ -1,16 +1,8 @@
-import {
-  Box,
-  Card,
-  CardBody,
-  CardFooter,
-  Heading,
-  Text,
-  useMediaQuery,
-} from "@chakra-ui/react";
-import { Carousel } from "@components/Carousel/Carousel";
+import { Box, Card, CardBody, CardFooter, Heading, Text, useMediaQuery } from '@chakra-ui/react';
+import { Carousel } from '@components/Carousel/Carousel';
 // import { Image } from '@chakra-ui/next-js'
-import { TempImage } from "@components/TempImage";
-import { StaticImageData } from "next/image";
+import { TempImage } from '@components/TempImage';
+import { StaticImageData } from 'next/image';
 
 export type ServiceCardProps = {
   // cardImg: StaticImageData
@@ -32,22 +24,22 @@ export const ServiceCard = ({
   textLeft,
 }: ServiceCardProps) => {
   return (
-    <Card variant={"service"} bgColor={"background.dark"}>
+    <Card variant={'service'} bgColor={'background.dark'}>
       <CardBody>
         <Carousel images={images} />
       </CardBody>
       <CardFooter>
-        <Box as={"article"}>
-          <Heading as={"h3"} variant={"card"}>
+        <Box as={'article'}>
+          <Heading as={'h3'} variant={'card'}>
             {titleLeft}
           </Heading>
-          <Text variant={"card"}>{textLeft}</Text>
+          <Text variant={'card'}>{textLeft}</Text>
         </Box>
-        <Box as={"article"} minWidth={"30%"}>
-          <Heading as={"h3"} variant={"card"}>
+        <Box as={'article'} minWidth={'30%'}>
+          <Heading as={'h3'} variant={'card'}>
             {titleRight}
           </Heading>
-          <Text variant={"card"}>{textRight}</Text>
+          <Text variant={'card'}>{textRight}</Text>
         </Box>
       </CardFooter>
     </Card>

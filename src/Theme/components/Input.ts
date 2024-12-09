@@ -1,17 +1,16 @@
-import { inputAnatomy } from "@chakra-ui/anatomy";
-import { createMultiStyleConfigHelpers } from "@chakra-ui/react";
+import { inputAnatomy } from '@chakra-ui/anatomy';
+import { createMultiStyleConfigHelpers } from '@chakra-ui/react';
 
-const { definePartsStyle, defineMultiStyleConfig } =
-  createMultiStyleConfigHelpers(inputAnatomy.keys);
+const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(inputAnatomy.keys);
 
 const variants = {
   default: definePartsStyle({
     field: {
-      bgColor: "inherit",
-      borderBottom: "1px solid",
-      borderColor: "form.trim",
-      borderRadius: "none",
-      height: "28px",
+      bgColor: 'inherit',
+      borderBottom: '1px solid',
+      borderColor: 'form.trim',
+      borderRadius: 'none',
+      height: '28px',
     },
   }),
 };
@@ -19,6 +18,6 @@ const variants = {
 export default defineMultiStyleConfig({
   variants,
   defaultProps: {
-    variant: "default",
+    variant: 'default',
   },
 });

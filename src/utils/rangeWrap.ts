@@ -6,11 +6,7 @@
  * @returns {number} The wrapped value within the given range
  */
 
-export const rangeWrap = (
-  min: number,
-  max: number,
-  current: number,
-): number => {
+export const rangeWrap = (min: number, max: number, current: number): number => {
   if (current >= min && current <= max) {
     return current;
   }

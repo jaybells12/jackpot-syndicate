@@ -9,6 +9,6 @@ type FormErrorState = {
 };
 
 type FormErrorAction = {
-  type: "first" | "last" | "email" | "phone" | "subject" | "message"; // | 'address'
+  type: 'first' | 'last' | 'email' | 'phone' | 'subject' | 'message'; // | 'address'
   payload: boolean;
 };

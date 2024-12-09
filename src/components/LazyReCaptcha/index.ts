@@ -1,1 +1,1 @@
-export * from "./LazyReCaptcha";
+export * from './LazyReCaptcha';

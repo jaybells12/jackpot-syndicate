@@ -1,1 +1,1 @@
-export * from "./IframeLoader";
+export * from './IframeLoader';

@@ -1,10 +1,10 @@
-import { StaticImageData } from "next/image";
-import { TempImage } from "@components/TempImage";
-import { AnimatePresence, motion } from "framer-motion";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useSize } from "@chakra-ui/react-use-size";
-import { Box, Circle, HStack } from "@chakra-ui/react";
-import { rangeWrap } from "src/utils";
+import { StaticImageData } from 'next/image';
+import { TempImage } from '@components/TempImage';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useSize } from '@chakra-ui/react-use-size';
+import { Box, Circle, HStack } from '@chakra-ui/react';
+import { rangeWrap } from 'src/utils';
 
 export type CarouselProps = {
   images: StaticImageData[];
@@ -76,17 +76,17 @@ export const Carousel = ({ images }: CarouselProps) => {
   }, [nextImg, count, autoplay]);
 
   return (
-    <Box ref={sizeRef} position={"relative"}>
-      <AnimatePresence mode={"popLayout"} initial={false} custom={direction}>
+    <Box ref={sizeRef} position={'relative'}>
+      <AnimatePresence mode={'popLayout'} initial={false} custom={direction}>
         <motion.div
           key={page}
           variants={variants}
-          initial={"enter"}
-          animate={"center"}
-          exit={"exit"}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          initial={'enter'}
+          animate={'center'}
+          exit={'exit'}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           custom={direction}
-          drag={"x"}
+          drag={'x'}
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={1}
           onDragStart={() => stopAutoplay()}
@@ -99,38 +99,25 @@ export const Carousel = ({ images }: CarouselProps) => {
               paginate(-1);
             }
             setAutoplay((s) => !s);
-          }}
-        >
+          }}>
           <TempImage
             priority
-            placeholder={"blur"}
+            placeholder={'blur'}
             src={images[index]}
-            alt={"carousel image"}
+            alt={'carousel image'}
             width={images[index].width}
             height={images[index].height}
             sx={{
-              height: "auto",
-              width: imageSize?.width || "auto",
+              height: 'auto',
+              width: imageSize?.width || 'auto',
             }}
-            sizes={"(max-width: 992px) 100vw, (max-width: 1536px) 75vw, 50vw"}
-            pointerEvents={"none"}
+            sizes={'(max-width: 992px) 100vw, (max-width: 1536px) 75vw, 50vw'}
+            pointerEvents={'none'}
           />
         </motion.div>
       </AnimatePresence>
-      <HStack
-        position={"absolute"}
-        bottom={0}
-        width={"100%"}
-        justify={"center"}
-      >
-        {count &&
-          images.map((_, idx) => (
-            <Circle
-              key={idx}
-              size={[2, 3, 4]}
-              bgColor={index === idx ? "white" : "gray.500"}
-            />
-          ))}
+      <HStack position={'absolute'} bottom={0} width={'100%'} justify={'center'}>
+        {count && images.map((_, idx) => <Circle key={idx} size={[2, 3, 4]} bgColor={index === idx ? 'white' : 'gray.500'} />)}
       </HStack>
     </Box>
   );

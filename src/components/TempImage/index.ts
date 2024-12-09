@@ -1,1 +1,1 @@
-export * from "./TempImage";
+export * from './TempImage';

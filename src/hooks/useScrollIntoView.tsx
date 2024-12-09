@@ -1,7 +1,7 @@
 // This hook eases the scroll animation, the easing function can be swapped out for other types,
 // Change the duration to lengthen or shorten the animation, included different easeIn functions
-import { OffsetTopHandle } from "@components/Contact";
-import { RefObject } from "react";
+import { OffsetTopHandle } from '@components/Contact';
+import { RefObject } from 'react';
 
 // Need to pass a origin ref and an array of target Refs to this, instead of accessing DOM directly
 export const useScrollIntoView = (targetRef: RefObject<OffsetTopHandle>) => {
@@ -18,12 +18,7 @@ export const useScrollIntoView = (targetRef: RefObject<OffsetTopHandle>) => {
       function animation(currentTime: number) {
         if (startTime === null) startTime = currentTime;
         let timeElapsed = currentTime - startTime;
-        let scrollTop = easeInQuint(
-          timeElapsed,
-          startPosition,
-          distance,
-          DURATION,
-        );
+        let scrollTop = easeInQuint(timeElapsed, startPosition, distance, DURATION);
         window.scrollTo(0, scrollTop);
         if (timeElapsed < DURATION) requestAnimationFrame(animation);
       }

@@ -1,28 +1,28 @@
-import liveStageImg from "@public/homepage_live-stage.webp";
-import podcastStudioImg from "@public/homepage_podcast.webp";
-import recordingStudioImg from "@public/homepage_recording-studio.webp";
-import youtubeStudioImg from "@public/homepage_youtube-studio.webp";
+import liveStageImg from '@public/homepage_live-stage.webp';
+import podcastStudioImg from '@public/homepage_podcast.webp';
+import recordingStudioImg from '@public/homepage_recording-studio.webp';
+import youtubeStudioImg from '@public/homepage_youtube-studio.webp';
 
 const features = [
   {
-    title: "Live Stage",
+    title: 'Live Stage',
     image: liveStageImg,
-    url: "/live-stage",
+    url: '/live-stage',
   },
   {
-    title: "Podcast Studio",
+    title: 'Podcast Studio',
     image: podcastStudioImg,
-    url: "/podcast-room",
+    url: '/podcast-room',
   },
   {
-    title: "Youtube Studio",
+    title: 'Youtube Studio',
     image: youtubeStudioImg,
-    url: "/youtube-studio",
+    url: '/youtube-studio',
   },
   {
-    title: "Recording Studio / ISO Booth",
+    title: 'Recording Studio / ISO Booth',
     image: recordingStudioImg,
-    url: "/recording-studio",
+    url: '/recording-studio',
   },
 ];
 
@@ -32,26 +32,26 @@ const navLinks = [
   //   url: '/',
   // },
   {
-    text: "Live Stage",
-    url: "/live-stage",
+    text: 'Live Stage',
+    url: '/live-stage',
   },
   {
-    text: "Podcast Studio",
-    url: "/podcast-room",
+    text: 'Podcast Studio',
+    url: '/podcast-room',
   },
   {
-    text: "Youtube Studio",
-    url: "/youtube-studio",
+    text: 'Youtube Studio',
+    url: '/youtube-studio',
   },
   {
-    text: "Recording Studio / ISO Booth",
-    url: "/recording-studio",
+    text: 'Recording Studio / ISO Booth',
+    url: '/recording-studio',
   },
 ];
 
 const hero = {
-  title: "We Build. We Cultivate. You Grow.",
-  text: "We help Creators and Brands grow their communities to maximize earnings across social platforms.",
+  title: 'We Build. We Cultivate. You Grow.',
+  text: 'We help Creators and Brands grow their communities to maximize earnings across social platforms.',
 };
 
 export { features, navLinks, hero };

@@ -229,63 +229,16 @@ export const ContactForm = (props: FlexProps) => {
   };
 
   return (
-    <Flex
-      ref={formRef}
-      position={'relative'}
-      direction={'column'}
-      margin={['2.25em 1em', null, '2.25em 1.75em 2.25em 1em']}
-      {...props}
-    >
-      <ContactFormResults
-        when={showResult}
-        size={formSize}
-        result={result}
-        duration={0.25}
-        tryAgain={() => setShowResult(false)}
-      />
-      <Flex
-        gap={[FIELD_SPACING, null, '1.5rem']}
-        direction={['column', null, 'row']}
-      >
-        <ContactFormField
-          isRequired
-          isDisabled={isDisabled}
-          isInvalid={isError.first}
-          id={'first'}
-          value={first}
-          onChange={handleInput}
-        />
-        <ContactFormField
-          isRequired
-          isDisabled={isDisabled}
-          isInvalid={isError.last}
-          id={'last'}
-          value={last}
-          onChange={handleInput}
-        />
+    <Flex ref={formRef} position={'relative'} direction={'column'} margin={['2.25em 1em', null, '2.25em 1.75em 2.25em 1em']} {...props}>
+      <ContactFormResults when={showResult} size={formSize} result={result} duration={0.25} tryAgain={() => setShowResult(false)} />
+      <Flex gap={[FIELD_SPACING, null, '1.5rem']} direction={['column', null, 'row']}>
+        <ContactFormField isRequired isDisabled={isDisabled} isInvalid={isError.first} id={'first'} value={first} onChange={handleInput} />
+        <ContactFormField isRequired isDisabled={isDisabled} isInvalid={isError.last} id={'last'} value={last} onChange={handleInput} />
       </Flex>
-      <Flex
-        gap={[FIELD_SPACING, null, '1.5rem']}
-        direction={['column', null, 'row']}
-        marginTop={FIELD_SPACING}
-      >
-        <ContactFormField
-          isRequired
-          isDisabled={isDisabled}
-          isInvalid={isError.email}
-          id={'email'}
-          value={email}
-          onChange={handleInput}
-        />
+      <Flex gap={[FIELD_SPACING, null, '1.5rem']} direction={['column', null, 'row']} marginTop={FIELD_SPACING}>
+        <ContactFormField isRequired isDisabled={isDisabled} isInvalid={isError.email} id={'email'} value={email} onChange={handleInput} />
 
-        <ContactFormField
-          isRequired
-          isDisabled={isDisabled}
-          isInvalid={isError.phone}
-          id={'phone'}
-          value={phone}
-          onChange={handleInput}
-        />
+        <ContactFormField isRequired isDisabled={isDisabled} isInvalid={isError.phone} id={'phone'} value={phone} onChange={handleInput} />
       </Flex>
       <ContactFormField
         isRequired
@@ -331,33 +284,21 @@ export const ContactForm = (props: FlexProps) => {
         alignSelf={'flex-end'}
         marginTop={FIELD_SPACING}
         onClick={handleSubmit}
-        _disabled={{ bgColor: 'form.accent', padding: 0, cursor: 'wait' }}
-      >
+        _disabled={{ bgColor: 'form.accent', padding: 0, cursor: 'wait' }}>
         {isDisabled ? <PaperPlane /> : 'Send Message'}
       </Button>
       <Text variant={'fineprint'}>
         This site is protected by reCAPTCHA and the Google
-        <Link
-          href='https://policies.google.com/privacy'
-          color={'blue.500'}
-        >
+        <Link href="https://policies.google.com/privacy" color={'blue.500'}>
           {` Privacy Policy `}
         </Link>{' '}
         and
-        <Link
-          href='https://policies.google.com/terms'
-          color={'blue.500'}
-        >
+        <Link href="https://policies.google.com/terms" color={'blue.500'}>
           {` Terms of Service `}
         </Link>{' '}
         apply.
       </Text>
-      {recapNeeded && (
-        <ReCAPTCHA
-          recapRef={recaptchaValue}
-          onChange={onChange}
-        />
-      )}
+      {recapNeeded && <ReCAPTCHA recapRef={recaptchaValue} onChange={onChange} />}
     </Flex>
   );
 };

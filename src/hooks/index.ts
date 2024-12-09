@@ -1,2 +1,2 @@
-export * from "./useIsTouchScreen";
-export * from "./useScrollIntoView";
+export * from './useIsTouchScreen';
+export * from './useScrollIntoView';
