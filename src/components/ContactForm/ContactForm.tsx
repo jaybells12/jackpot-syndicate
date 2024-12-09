@@ -1,33 +1,16 @@
-import {
-  Flex,
-  Input,
-  FormControl,
-  Button,
-  Text,
-  FlexProps,
-} from '@chakra-ui/react'
-import { useSize } from '@chakra-ui/react-use-size'
-import {
-  ChangeEvent,
-  MouseEvent,
-  useCallback,
-  useReducer,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import { Flex, Input, FormControl, Button, Text, FlexProps } from '@chakra-ui/react';
+import { useSize } from '@chakra-ui/react-use-size';
+import { ChangeEvent, MouseEvent, useCallback, useReducer, useEffect, useRef, useState } from 'react';
 // import ReCAPTCHA from 'react-google-recaptcha'
-import { Link } from '@chakra-ui/next-js'
-import verifyRecaptcha from 'src/utils/verifyRecaptcha'
-import sendEmail from 'src/utils/sendEmail'
-import { ContactFormField } from './ContactFormField'
-import { PaperPlane } from '@components/PaperPlane'
-import { ContactFormResults } from './ContactFormResults'
-import dynamic from 'next/dynamic'
+import { Link } from '@chakra-ui/next-js';
+import verifyRecaptcha from 'src/utils/verifyRecaptcha';
+import sendEmail from 'src/utils/sendEmail';
+import { ContactFormField } from './ContactFormField';
+import { PaperPlane } from '@components/PaperPlane';
+import { ContactFormResults } from './ContactFormResults';
+import dynamic from 'next/dynamic';
 
-const ReCAPTCHA = dynamic(() =>
-  import('@components/LazyReCaptcha').then((mod) => mod.LazyReCaptcha)
-)
+const ReCAPTCHA = dynamic(() => import('@components/LazyReCaptcha').then((mod) => mod.LazyReCaptcha));
 
 function reducer(state: FormErrorState, action: FormErrorAction) {
   switch (action.type) {
@@ -35,39 +18,39 @@ function reducer(state: FormErrorState, action: FormErrorAction) {
       return {
         ...state,
         first: action.payload,
-      }
+      };
     case 'last':
       return {
         ...state,
         last: action.payload,
-      }
+      };
     case 'email':
       return {
         ...state,
         email: action.payload,
-      }
+      };
     case 'phone':
       return {
         ...state,
         phone: action.payload,
-      }
+      };
     case 'subject':
       return {
         ...state,
         subject: action.payload,
-      }
+      };
     case 'message':
       return {
         ...state,
         message: action.payload,
-      }
+      };
     // case 'address':
     //   return {
     //     ...state,
     //     message: action.payload,
     //   }
     default:
-      throw Error('Unknown Form Action: ', action.type)
+      throw Error('Unknown Form Action: ', action.type);
   }
 }
 
@@ -80,36 +63,29 @@ export const ContactForm = (props: FlexProps) => {
     subject: false,
     message: false,
     // address: false,
-  })
+  });
   // // Address is a honeypot field
   // const [address, setaddress] = useState('')
-  const [first, setFirst] = useState('')
-  const [last, setLast] = useState('')
-  const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
-  const [subject, setSubject] = useState('')
-  const [message, setMessage] = useState('')
-  const [result, setResult] = useState(false)
-  const [showResult, setShowResult] = useState(false)
-  const [isDisabled, setIsDisabled] = useState(false)
-  const recaptchaValue = useRef(null)
-  const [recapNeeded, setRecapNeeded] = useState(false)
-  const formRef = useRef<HTMLElement>(null)
-  const formSize = useSize(formRef)
+  const [first, setFirst] = useState('');
+  const [last, setLast] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [result, setResult] = useState(false);
+  const [showResult, setShowResult] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const recaptchaValue = useRef(null);
+  const [recapNeeded, setRecapNeeded] = useState(false);
+  const formRef = useRef<HTMLElement>(null);
+  const formSize = useSize(formRef);
 
-  const FIELD_SPACING = '1rem'
+  const FIELD_SPACING = '1rem';
 
   // If an error property is true, then return false
   const isValid = useCallback(() => {
-    return !(
-      isError.first ||
-      isError.last ||
-      isError.email ||
-      isError.phone ||
-      isError.subject ||
-      isError.message
-    )
-  }, [isError])
+    return !(isError.first || isError.last || isError.email || isError.phone || isError.subject || isError.message);
+  }, [isError]);
 
   useEffect(() => {
     // if (address) {
@@ -125,121 +101,106 @@ export const ContactForm = (props: FlexProps) => {
         if (!recaptchaValue.current) {
           // ReCaptcha is not loaded
           // Render Failure Modal
-          setResult(false)
-          setIsDisabled(false)
-          setShowResult(true)
-          return
+          setResult(false);
+          setIsDisabled(false);
+          setShowResult(true);
+          return;
         }
         // Submission logic continues at ReCaptcha OnChange handler
         //@ts-expect-error Couldn't figure out why typescript assumes ref is a never here, but it works.
-        recaptchaValue.current.execute()
-        return
+        recaptchaValue.current.execute();
+        return;
       } else {
         // Form Field validation failed
-        setIsDisabled(false)
-        return
+        setIsDisabled(false);
+        return;
       }
     }
-  }, [isDisabled, isValid]) // address
+  }, [isDisabled, isValid]); // address
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-    const field = e.target.id
-    const value = e.target.value
+    const field = e.target.id;
+    const value = e.target.value;
 
     if (!recapNeeded) {
-      setRecapNeeded(true)
+      setRecapNeeded(true);
     }
 
     switch (field) {
       case 'first':
-        setFirst(value)
+        setFirst(value);
         if (value && isError.first) {
-          dispatch({ type: 'first', payload: false })
+          dispatch({ type: 'first', payload: false });
         } else if (!value && !isError.first) {
-          dispatch({ type: 'first', payload: true })
+          dispatch({ type: 'first', payload: true });
         }
-        break
+        break;
       case 'last':
-        setLast(value)
+        setLast(value);
         if (value && isError.last) {
-          dispatch({ type: 'last', payload: false })
+          dispatch({ type: 'last', payload: false });
         } else if (!value && !isError.last) {
-          dispatch({ type: 'last', payload: true })
+          dispatch({ type: 'last', payload: true });
         }
-        break
+        break;
       case 'email':
-        setEmail(value)
+        setEmail(value);
         if (value && isError.email) {
-          dispatch({ type: 'email', payload: false })
+          dispatch({ type: 'email', payload: false });
         } else if (!value && !isError.email) {
-          dispatch({ type: 'email', payload: true })
+          dispatch({ type: 'email', payload: true });
         }
-        break
+        break;
       case 'phone':
-        setPhone(value)
+        setPhone(value);
         if (value && isError.phone) {
-          dispatch({ type: 'phone', payload: false })
+          dispatch({ type: 'phone', payload: false });
         } else if (!value && !isError.phone) {
-          dispatch({ type: 'phone', payload: true })
+          dispatch({ type: 'phone', payload: true });
         }
-        break
+        break;
       case 'subject':
-        setSubject(value)
+        setSubject(value);
         if (value && isError.subject) {
-          dispatch({ type: 'subject', payload: false })
+          dispatch({ type: 'subject', payload: false });
         } else if (!value && !isError.subject) {
-          dispatch({ type: 'subject', payload: true })
+          dispatch({ type: 'subject', payload: true });
         }
-        break
+        break;
       case 'message':
-        setMessage(value)
+        setMessage(value);
         if (value && isError.message) {
-          dispatch({ type: 'message', payload: false })
+          dispatch({ type: 'message', payload: false });
         } else if (!value && !isError.message) {
-          dispatch({ type: 'message', payload: true })
+          dispatch({ type: 'message', payload: true });
         }
-        break
+        break;
       default:
-        console.log('This should never happen')
+        console.log('This should never happen');
     }
-  }
+  };
 
   const verifyRequiredFields = () => {
-    first
-      ? dispatch({ type: 'first', payload: false })
-      : dispatch({ type: 'first', payload: true })
-    last
-      ? dispatch({ type: 'last', payload: false })
-      : dispatch({ type: 'last', payload: true })
-    email
-      ? dispatch({ type: 'email', payload: false })
-      : dispatch({ type: 'email', payload: true })
-    phone
-      ? dispatch({ type: 'phone', payload: false })
-      : dispatch({ type: 'phone', payload: true })
-    subject
-      ? dispatch({ type: 'subject', payload: false })
-      : dispatch({ type: 'subject', payload: true })
-    message
-      ? dispatch({ type: 'message', payload: false })
-      : dispatch({ type: 'message', payload: true })
-  }
+    first ? dispatch({ type: 'first', payload: false }) : dispatch({ type: 'first', payload: true });
+    last ? dispatch({ type: 'last', payload: false }) : dispatch({ type: 'last', payload: true });
+    email ? dispatch({ type: 'email', payload: false }) : dispatch({ type: 'email', payload: true });
+    phone ? dispatch({ type: 'phone', payload: false }) : dispatch({ type: 'phone', payload: true });
+    subject ? dispatch({ type: 'subject', payload: false }) : dispatch({ type: 'subject', payload: true });
+    message ? dispatch({ type: 'message', payload: false }) : dispatch({ type: 'message', payload: true });
+  };
 
   const handleSubmit = (e: MouseEvent) => {
-    e.preventDefault()
-    console.log('RecapNeeded: ', recapNeeded)
-    console.log('RecapRef: ', recaptchaValue.current)
-
+    e.preventDefault();
     // Validate Form Fields
-    verifyRequiredFields()
+    verifyRequiredFields();
     // When component rerenders, submission logic continues when isDisabled is true
-    setIsDisabled(true)
+    setIsDisabled(true);
     // setShowResult(true) // Remove this before pushing to main
-  }
+  };
 
   const onChange = async (token: string | null) => {
     if (token) {
-      const response = await verifyRecaptcha(token)
+      const response = await verifyRecaptcha(token);
       if (response.success) {
         // Captcha Verified - Send Email - Render Success Message (Modal?)
         const result = await sendEmail({
@@ -248,24 +209,24 @@ export const ContactForm = (props: FlexProps) => {
           phone,
           subject,
           message,
-        })
+        });
         if (Boolean(result.success)) {
-          setResult(true)
+          setResult(true);
         } else {
-          setIsDisabled(false)
-          setResult(false)
+          setIsDisabled(false);
+          setResult(false);
         }
-        setShowResult(true)
-        return
+        setShowResult(true);
+        return;
       } else {
         // Captcha Unverified - Render Failure Message (Modal?)
-        setResult(false)
-        setIsDisabled(false)
-        setShowResult(true)
-        return
+        setResult(false);
+        setIsDisabled(false);
+        setShowResult(true);
+        return;
       }
     }
-  }
+  };
 
   return (
     <Flex
@@ -398,5 +359,5 @@ export const ContactForm = (props: FlexProps) => {
         />
       )}
     </Flex>
-  )
-}
+  );
+};

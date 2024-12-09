@@ -4,17 +4,17 @@ import {
   FormLabel,
   Input,
   SpaceProps,
-} from '@chakra-ui/react'
-import { ChangeEvent } from 'react'
+} from "@chakra-ui/react";
+import { ChangeEvent } from "react";
 
 export type ContactFormFieldProps = Partial<SpaceProps> & {
-  isRequired: boolean
-  isDisabled: boolean
-  isInvalid: boolean
-  id: string
-  value: string
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
-}
+  isRequired: boolean;
+  isDisabled: boolean;
+  isInvalid: boolean;
+  id: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+};
 
 export const ContactFormField = ({
   isRequired = false,
@@ -25,10 +25,10 @@ export const ContactFormField = ({
   onChange,
   ...spaceProps
 }: ContactFormFieldProps) => {
-  const name = id.charAt(0).toUpperCase() + id.slice(1)
+  const name = id.charAt(0).toUpperCase() + id.slice(1);
   return (
     <FormControl
-      as={'fieldset'}
+      as={"fieldset"}
       isRequired={isRequired}
       isDisabled={isDisabled}
       isInvalid={isInvalid}
@@ -39,20 +39,14 @@ export const ContactFormField = ({
         // as={'legend'}
         requiredIndicator={<>*</>}
       >
-        {id === 'first' || id === 'last' ? `${name} Name` : name}
+        {id === "first" || id === "last" ? `${name} Name` : name}
       </FormLabel>
-      <Input
-        value={value}
-        onChange={onChange}
-      />
-      <FormErrorMessage
-        position={'absolute'}
-        marginTop={0}
-      >
+      <Input value={value} onChange={onChange} />
+      <FormErrorMessage position={"absolute"} marginTop={0}>
         {`${
-          id === 'first' || id === 'last' ? `${name} name` : name
+          id === "first" || id === "last" ? `${name} name` : name
         } is required.`}
       </FormErrorMessage>
     </FormControl>
-  )
-}
+  );
+};

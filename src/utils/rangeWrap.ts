@@ -9,17 +9,17 @@
 export const rangeWrap = (
   min: number,
   max: number,
-  current: number
+  current: number,
 ): number => {
   if (current >= min && current <= max) {
-    return current
+    return current;
   }
 
-  const range = max - min + 1
+  const range = max - min + 1;
 
   while (current < min) {
-    current += range
+    current += range;
   }
 
-  return current % range
-}
+  return current % range;
+};

@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-import useSwr from 'swr'
-import { Box, Heading } from '@chakra-ui/react'
-import { Logo } from '@components/Logo'
+import useSwr from "swr";
+import { Box, Heading } from "@chakra-ui/react";
+import { Logo } from "@components/Logo";
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 // export const createGoogleFontModule = async (fontName: string) => {
 //   const module = await import('../../../node_modules/next/font/google')
@@ -29,10 +29,5 @@ export default function Page() {
   //     return <h1>Loading...</h1>
   //   }
 
-  return (
-    <Logo
-      width={'500px'}
-      height={'300px'}
-    />
-  )
+  return <Logo width={"500px"} height={"300px"} />;
 }

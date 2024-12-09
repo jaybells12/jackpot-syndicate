@@ -1,24 +1,24 @@
-'use client'
+"use client";
 
-import { ContactProps, OffsetTopHandle } from '@components/Contact'
-import { NavBar } from '@components/NavBar'
-import dynamic from 'next/dynamic'
-import { useRef } from 'react'
+import { ContactProps, OffsetTopHandle } from "@components/Contact";
+import { NavBar } from "@components/NavBar";
+import dynamic from "next/dynamic";
+import { useRef } from "react";
 
 const Contact = dynamic(() =>
-  import('@components/Contact').then((module) => module.Contact)
-)
+  import("@components/Contact").then((module) => module.Contact),
+);
 
 const WrappedContact = ({ forwardedRef }: ContactProps) => (
   <Contact forwardedRef={forwardedRef} />
-)
+);
 
 export default function ServicesLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const footerRef = useRef<OffsetTopHandle>(null)
+  const footerRef = useRef<OffsetTopHandle>(null);
 
   return (
     <>
@@ -26,5 +26,5 @@ export default function ServicesLayout({
       <main>{children}</main>
       <WrappedContact forwardedRef={footerRef} />
     </>
-  )
+  );
 }

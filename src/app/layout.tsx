@@ -1,5 +1,6 @@
-import { Providers } from './providers'
-import Script from 'next/script'
+import { Providers } from './providers';
+import Script from 'next/script';
+import { GoogleTagManager } from '@next/third-parties/google';
 
 export const metadata = {
   title: 'Jackpot Syndicate',
@@ -32,7 +33,7 @@ export const metadata = {
     noarchive: false,
     nosnippet: false,
   },
-}
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -45,9 +46,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           strategy={'lazyOnload'}
         />
       </head>
+      <GoogleTagManager gtmId={'G-R82LD1WYCH'} />
       <body>
         <Providers>{children}</Providers>
       </body>
     </html>
-  )
+  );
 }
