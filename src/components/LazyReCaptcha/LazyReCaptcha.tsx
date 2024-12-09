@@ -1,10 +1,10 @@
-import ReCAPTCHA from 'react-google-recaptcha'
-import { MutableRefObject } from 'react'
+import ReCAPTCHA from "react-google-recaptcha";
+import { MutableRefObject } from "react";
 
 type LazyReCaptchaProps = {
-  recapRef: MutableRefObject<any>
-  onChange: (token: string | null) => void
-}
+  recapRef: MutableRefObject<any>;
+  onChange: (token: string | null) => void;
+};
 
 export const LazyReCaptcha: React.FunctionComponent<LazyReCaptchaProps> = ({
   recapRef,
@@ -13,9 +13,9 @@ export const LazyReCaptcha: React.FunctionComponent<LazyReCaptchaProps> = ({
   return (
     <ReCAPTCHA
       ref={recapRef}
-      size={'invisible'}
+      size={"invisible"}
       onChange={onChange}
       sitekey={process.env.NEXT_PUBLIC_INVIS_RECAP_SITE as string}
     />
-  )
-}
+  );
+};
